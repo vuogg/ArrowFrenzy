@@ -9,6 +9,13 @@ TagManager:
   - FxTemporaire
   - Arrow
   - Buff
+  - Greenx3
+  - Greenx5
+  - Greenx7
+  - Greenx9
+  - Greenx25
+  - Yellowx25
+  - Yellowx50
   layers:
   - Default
   - TransparentFX
@@ -16,8 +23,8 @@ TagManager:
   - Reflect
   - Water
   - UI
-  - Arrow
-  - 
+  - Buff
+  - Target
   - 
   - 
   - 

@@ -44,9 +44,10 @@ GameObject:
   - component: {fileID: 6434136431763210216}
   - component: {fileID: 1337864279975674807}
   - component: {fileID: 7044605812210359814}
-  m_Layer: 0
+  - component: {fileID: 4716302839225115425}
+  m_Layer: 6
   m_Name: GreenBuffx25
-  m_TagString: Buff
+  m_TagString: Greenx25
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61,7 +62,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 0.5, y: 3, z: 0.5}
+  m_LocalScale: {x: 0.5, y: 2, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1504048305348123652}
@@ -138,6 +139,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4716302839225115425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3071869780716369370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60b389642c92ad743ba8364c83a405b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownDuration: 5
+  arrowMultiplier: 25
+  arrowPrefab: {fileID: 1485033661919127732, guid: 9cf91ed6a1c1f3542abba4523b859489, type: 3}
+  spreadAngle: 120
+  arrowSpawnPoint: {fileID: 8454547513922349469}
+  arrowSpeed: 10
 --- !u!1 &5715798730729539606
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 8693869473183721669}
   - component: {fileID: 971581929022897773}
   - component: {fileID: 3157087089803628548}
-  m_Layer: 0
+  - component: {fileID: 3892105960597353015}
+  m_Layer: 6
   m_Name: YellowBuffx25
-  m_TagString: Buff
+  m_TagString: Yellowx25
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 0.5, y: 3, z: 0.5}
+  m_LocalScale: {x: 0.5, y: 2, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7307097054383414551}
@@ -106,6 +107,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3892105960597353015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375787497335236471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60b389642c92ad743ba8364c83a405b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownDuration: 5
+  arrowMultiplier: 25
+  arrowPrefab: {fileID: 1375787497335236471}
+  spreadAngle: 120
+  arrowSpawnPoint: {fileID: 4480929255960061354}
+  arrowSpeed: 10
 --- !u!1 &6122783827263372810
 GameObject:
   m_ObjectHideFlags: 0

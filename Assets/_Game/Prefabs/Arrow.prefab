@@ -124,6 +124,12 @@ MonoBehaviour:
   reflectLayers:
     serializedVersion: 2
     m_Bits: 8
+  buffLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 128
   arrowSpeed: 10
 --- !u!1 &1606972069694784870
 GameObject:

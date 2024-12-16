@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Fork\\ArrowFrenzy\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EEDB73BD-8494-8A4F-DD85-086B08AE5966}|Assembly-CSharp.csproj|d:\\fork\\arrowfrenzy\\assets\\_game\\scripts\\arrow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEDB73BD-8494-8A4F-DD85-086B08AE5966}|Assembly-CSharp.csproj|solutionrelative:assets\\_game\\scripts\\arrow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEDB73BD-8494-8A4F-DD85-086B08AE5966}|Assembly-CSharp.csproj|d:\\fork\\arrowfrenzy\\assets\\_game\\scripts\\buff.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEDB73BD-8494-8A4F-DD85-086B08AE5966}|Assembly-CSharp.csproj|solutionrelative:assets\\_game\\scripts\\buff.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEDB73BD-8494-8A4F-DD85-086B08AE5966}|Assembly-CSharp.csproj|d:\\fork\\arrowfrenzy\\assets\\_game\\scripts\\crossbowcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEDB73BD-8494-8A4F-DD85-086B08AE5966}|Assembly-CSharp.csproj|solutionrelative:assets\\_game\\scripts\\crossbowcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEDB73BD-8494-8A4F-DD85-086B08AE5966}|Assembly-CSharp.csproj|d:\\fork\\arrowfrenzy\\assets\\_game\\scripts\\target.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEDB73BD-8494-8A4F-DD85-086B08AE5966}|Assembly-CSharp.csproj|solutionrelative:assets\\_game\\scripts\\target.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Buff.cs",
+              "DocumentMoniker": "D:\\Fork\\ArrowFrenzy\\Assets\\_Game\\Scripts\\Buff.cs",
+              "RelativeDocumentMoniker": "Assets\\_Game\\Scripts\\Buff.cs",
+              "ToolTip": "D:\\Fork\\ArrowFrenzy\\Assets\\_Game\\Scripts\\Buff.cs",
+              "RelativeToolTip": "Assets\\_Game\\Scripts\\Buff.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T01:41:38.304Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Arrow.cs",
+              "DocumentMoniker": "D:\\Fork\\ArrowFrenzy\\Assets\\_Game\\Scripts\\Arrow.cs",
+              "RelativeDocumentMoniker": "Assets\\_Game\\Scripts\\Arrow.cs",
+              "ToolTip": "D:\\Fork\\ArrowFrenzy\\Assets\\_Game\\Scripts\\Arrow.cs",
+              "RelativeToolTip": "Assets\\_Game\\Scripts\\Arrow.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAowC8AAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T01:41:39.521Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CrossBowController.cs",
+              "DocumentMoniker": "D:\\Fork\\ArrowFrenzy\\Assets\\_Game\\Scripts\\CrossBowController.cs",
+              "RelativeDocumentMoniker": "Assets\\_Game\\Scripts\\CrossBowController.cs",
+              "ToolTip": "D:\\Fork\\ArrowFrenzy\\Assets\\_Game\\Scripts\\CrossBowController.cs",
+              "RelativeToolTip": "Assets\\_Game\\Scripts\\CrossBowController.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T01:41:37.499Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Target.cs",
+              "DocumentMoniker": "D:\\Fork\\ArrowFrenzy\\Assets\\_Game\\Scripts\\Target.cs",
+              "RelativeDocumentMoniker": "Assets\\_Game\\Scripts\\Target.cs",
+              "ToolTip": "D:\\Fork\\ArrowFrenzy\\Assets\\_Game\\Scripts\\Target.cs",
+              "RelativeToolTip": "Assets\\_Game\\Scripts\\Target.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T01:41:04.866Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -415,7 +415,7 @@ Transform:
   m_GameObject: {fileID: 8370802328558119537}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -684,6 +684,7 @@ MonoBehaviour:
   lineRenderer: {fileID: 5983248718290251758}
   crossbowCollider: {fileID: 1074587007457325132}
   crossbowTransform: {fileID: 4787407247547226210}
+  anim: {fileID: 3240984551978857752}
   arrowPrefab: {fileID: 7523215244210309044, guid: 9cf91ed6a1c1f3542abba4523b859489, type: 3}
   shootPoint: {fileID: 9032298987147674604}
   maxBounces: 3

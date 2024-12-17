@@ -64,7 +64,14 @@ public class Arrow : GameUnit
         Target targetScript = hit.collider.GetComponent<Target>();
         if (targetScript != null)
         {
-            targetScript.TakeDamage(1);
+            //Vector3 spawnPosition = targetScript.transform.position;
+            //Quaternion rotation = Quaternion.LookRotation(hitDirection);
+
+            //SimplePool.Spawn<Arrow>(PoolType.Arrow, spawnPosition, rotation);
+            Vector3 hitDirection = velocity.normalized;
+            targetScript.TakeDamage(1, hitDirection);
+
+            //StickToTarget(hit);
         }
     }
 
@@ -80,4 +87,23 @@ public class Arrow : GameUnit
         //dich chuyen 1 chut de khong va cham lap lai
         transform.position = hit.point + normal * 0.01f;
     }
+
+    //private void StickToTarget(RaycastHit hit)
+    //{
+    //    if (TryGetComponent(out Rigidbody rb))
+    //    {
+    //        rb.isKinematic = true;
+    //    }
+
+    //    if (col != null)
+    //    {
+    //        col.enabled = false;
+    //    }
+
+    //    transform.position = hit.point;
+
+    //    transform.rotation = Quaternion.LookRotation(-hit.normal);
+
+    //    transform.SetParent(hit.collider.transform);
+    //}
 }

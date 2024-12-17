@@ -6,11 +6,13 @@ public class CrossBowController : MonoBehaviour
 {
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private Collider crossbowCollider;
-    Vector2 startTouch;
-    public Transform crossbowTransform;
-    public GameObject arrowPrefab;
+    [SerializeField] private Transform crossbowTransform;
+    [SerializeField] private Animator anim;
+    private string currentAnimName;
+    public Arrow arrowPrefab;
     public Transform shootPoint;
     bool isDragging;
+    Vector2 startTouch;
 
     public int maxBounces = 3;
     //private bool hasShot = false;
@@ -22,11 +24,13 @@ public class CrossBowController : MonoBehaviour
         //    return;
         if (Input.GetMouseButtonDown(0))
         {
+            ChangeAnim("hold");
             startTouch = Input.mousePosition;
             isDragging = true;
         }
         else if (Input.GetMouseButtonUp(0))
         {
+            ChangeAnim("shoot");
             isDragging = false;
             ShootArrow();
         }
@@ -50,19 +54,42 @@ public class CrossBowController : MonoBehaviour
 
         for (int i = 0; i < maxBounces; i++)
         {
+            //RaycastHit hit;
+            //if(Physics.Raycast(currentPosition, aimDirection, out hit, 10f))
+            //{
+            //    lineRenderer.positionCount += 1;
+            //    lineRenderer.SetPosition(lineRenderer.positionCount - 1, hit.point);
+
+            //    if(hit.collider.CompareTag("Target") || hit.collider.CompareTag("Buff"))
+            //    {
+            //        break;
+            //    }
+
+            //    aimDirection = Vector3.Reflect(aimDirection, hit.normal);
+            //    currentPosition = hit.point;
+            //}
+            //else
+            //{
+            //    lineRenderer.positionCount += 1;
+            //    lineRenderer.SetPosition(lineRenderer.positionCount - 1, currentPosition + aimDirection * 10f);
+            //    break;
+            //}
+
             RaycastHit hit;
-            if(Physics.Raycast(currentPosition, aimDirection, out hit, 10f))
+            if (Physics.Raycast(currentPosition, aimDirection, out hit, 10f))
             {
                 lineRenderer.positionCount += 1;
                 lineRenderer.SetPosition(lineRenderer.positionCount - 1, hit.point);
 
-                if(hit.collider.CompareTag("Target") || hit.collider.CompareTag("Buff"))
+                if (hit.collider.CompareTag("Wall"))
+                {
+                    aimDirection = Vector3.Reflect(aimDirection, hit.normal);
+                    currentPosition = hit.point;
+                }
+                else
                 {
                     break;
                 }
-
-                aimDirection = Vector3.Reflect(aimDirection, hit.normal);
-                currentPosition = hit.point;
             }
             else
             {
@@ -93,7 +120,9 @@ public class CrossBowController : MonoBehaviour
     void ShootArrow()
     {
         //Tao mui ten
-        GameObject arrow = Instantiate(arrowPrefab, shootPoint.position, shootPoint.rotation);
+        //Arrow arrow = Instantiate(arrowPrefab, shootPoint.position, shootPoint.rotation);
+        //Arrow arrow = SimplePool.Spawn<Arrow>(arrowPrefab, shootPoint.position, shootPoint.rotation);
+        Arrow arrow = SimplePool.Spawn<Arrow>(PoolType.Arrow, shootPoint.position, shootPoint.rotation);
 
         //Truyen van toc cho mui ten
         Arrow arrowScript = arrow.GetComponent<Arrow>();
@@ -105,5 +134,15 @@ public class CrossBowController : MonoBehaviour
         //hasShot = true;
         //lineRenderer.enabled = false;
         //crossbowCollider.enabled = false;
+    }
+
+    private void ChangeAnim(string animName)
+    {
+        if(currentAnimName != animName)
+        {
+            anim.ResetTrigger(animName);
+            currentAnimName = animName;
+            anim.SetTrigger(currentAnimName);
+        }
     }
 }

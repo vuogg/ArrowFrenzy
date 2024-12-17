@@ -684,10 +684,9 @@ MonoBehaviour:
   lineRenderer: {fileID: 5983248718290251758}
   crossbowCollider: {fileID: 1074587007457325132}
   crossbowTransform: {fileID: 4787407247547226210}
-  arrowPrefab: {fileID: 1485033661919127732, guid: 9cf91ed6a1c1f3542abba4523b859489, type: 3}
+  arrowPrefab: {fileID: 7523215244210309044, guid: 9cf91ed6a1c1f3542abba4523b859489, type: 3}
   shootPoint: {fileID: 9032298987147674604}
-  maxBounces: 5
-  arrowSpeed: 10
+  maxBounces: 3
 --- !u!1 &8432159859324568369
 GameObject:
   m_ObjectHideFlags: 0

@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8db86a01720e9244819ea0426592438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolType: 1
   reflectLayers:
     serializedVersion: 2
     m_Bits: 8

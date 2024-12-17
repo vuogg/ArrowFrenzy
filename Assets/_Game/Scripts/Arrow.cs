@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Arrow : MonoBehaviour
+public class Arrow : GameUnit
 {
     private Vector3 velocity;
     public LayerMask reflectLayers;
@@ -58,14 +59,13 @@ public class Arrow : MonoBehaviour
     
     private void HitTarget(RaycastHit hit)
     {
+        SimplePool.Despawn(this);
         //Gay sat thuong cho target
         Target targetScript = hit.collider.GetComponent<Target>();
         if (targetScript != null)
         {
             targetScript.TakeDamage(1);
         }
-
-        Destroy(gameObject);
     }
 
     void Reflect(RaycastHit hit)

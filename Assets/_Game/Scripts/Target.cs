@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-    public int hp = 5;
+    [SerializeField] private Animator anim;
+    [SerializeField] private int hp = 5;
 
     public void TakeDamage(int damage)
     {

@@ -29,11 +29,11 @@ public class PoolControler : MonoBehaviour
             SimplePool.Preload(Pool[i].prefab, Pool[i].amount, Pool[i].root, Pool[i].collect);
         }
 
-        for (int i = 0; i < Particle.Length; i++)
-        {
-            ParticlePool.Preload(Particle[i].prefab, Particle[i].amount, Particle[i].root);
-            ParticlePool.Shortcut(Particle[i].particleType, Particle[i].prefab);
-        }
+        //for (int i = 0; i < Particle.Length; i++)
+        //{
+        //    ParticlePool.Preload(Particle[i].prefab, Particle[i].amount, Particle[i].root);
+        //    ParticlePool.Shortcut(Particle[i].particleType, Particle[i].prefab);
+        //}
     }
 }
 
@@ -145,10 +145,7 @@ public enum PoolType
 {
     None,
 
-    Bullet_1,
-    Bullet_2,
-    Bullet_3,
-    Bullet_4,
+    Arrow,
 }
 
 

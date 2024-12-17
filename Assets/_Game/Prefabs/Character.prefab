@@ -1094,6 +1094,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8296339139312938612}
+  - component: {fileID: 4532989228994534452}
   - component: {fileID: 7705442537759796672}
   - component: {fileID: 6391038616993928020}
   m_Layer: 7
@@ -1120,6 +1121,27 @@ Transform:
   - {fileID: 3138434529930022644}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &4532989228994534452
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5042417865213725255}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &7705442537759796672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1132,6 +1154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 060d1aaeb77ba5c478e79dfc7e8e5e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
   hp: 5
 --- !u!136 &6391038616993928020
 CapsuleCollider:
@@ -1152,7 +1175,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.45
+  m_Radius: 0.5
   m_Height: 4
   m_Direction: 1
   m_Center: {x: 0, y: 2.2, z: 0}

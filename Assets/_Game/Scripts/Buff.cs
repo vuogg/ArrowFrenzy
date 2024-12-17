@@ -6,7 +6,7 @@ public class Buff : MonoBehaviour
 {
     [SerializeField] private float cooldownDuration = 5f;
     [SerializeField] private int arrowMultiplier = 3;
-    [SerializeField] private GameObject arrowPrefab;
+    [SerializeField] private Arrow arrowPrefab;
     [SerializeField] private float spreadAngle = 90f;
     [SerializeField] private Transform arrowSpawnPoint;
     [SerializeField] private float arrowSpeed = 10f;
@@ -16,10 +16,10 @@ public class Buff : MonoBehaviour
     {
         if (isCooldown) return;
 
-        StartCoroutine(ArrowMultiplyCoroutine(direction));
+        StartCoroutine(IEArrowMultiply(direction));
     }
     
-    private IEnumerator ArrowMultiplyCoroutine(Vector3 direction)
+    private IEnumerator IEArrowMultiply(Vector3 direction)
     {
         //logic nhan mui ten
         float angleStep = spreadAngle / (arrowMultiplier - 1);
@@ -30,9 +30,9 @@ public class Buff : MonoBehaviour
             float angle = startAngle + angleStep * i;
             Quaternion rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(0, angle, 0) * transform.rotation;
 
-            GameObject newArrow = Instantiate(arrowPrefab, arrowSpawnPoint.position, rotation);
+            Arrow arrow = SimplePool.Spawn<Arrow>(PoolType.Arrow, arrowSpawnPoint.position, rotation);
 
-            Arrow arrowScript = newArrow.GetComponent <Arrow>();
+            Arrow arrowScript = arrow.GetComponent <Arrow>();
             if (arrowScript != null)
             {
                 Vector3 shootDirection = rotation * Vector3.forward;

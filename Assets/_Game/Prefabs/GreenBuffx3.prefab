@@ -325,6 +325,6 @@ MonoBehaviour:
   cooldownDuration: 5
   arrowMultiplier: 3
   arrowPrefab: {fileID: 7523215244210309044, guid: 9cf91ed6a1c1f3542abba4523b859489, type: 3}
-  spreadAngle: 90
+  spreadAngle: 60
   arrowSpawnPoint: {fileID: 111317463053821243}
   arrowSpeed: 10

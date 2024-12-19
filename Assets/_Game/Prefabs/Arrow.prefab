@@ -125,6 +125,7 @@ MonoBehaviour:
   poolType: 1
   col: {fileID: 4797812272251637675}
   rb: {fileID: 1271852427416838883}
+  trailRenderer: {fileID: 9026186416653436034}
   reflectLayers:
     serializedVersion: 2
     m_Bits: 8

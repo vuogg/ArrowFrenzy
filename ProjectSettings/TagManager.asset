@@ -16,6 +16,7 @@ TagManager:
   - Greenx25
   - Yellowx25
   - Yellowx50
+  - Spine
   layers:
   - Default
   - TransparentFX

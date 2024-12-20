@@ -11,6 +11,7 @@ public class Target : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private int hp = 5;
     [SerializeField] private float force = 20f;
+    [SerializeField] private HealthText health;
 
     //private Vector3 lastHitDirection;
     private string currentAnimName;
@@ -19,6 +20,12 @@ public class Target : MonoBehaviour
 
     private void Start()
     {
+        OnInit();
+    }
+
+    private void OnInit()
+    {
+        health.OnInit(hp);
         //if(capsuleCollider == null)
         //{
         //    capsuleCollider = GetComponent<CapsuleCollider>();
@@ -30,7 +37,7 @@ public class Target : MonoBehaviour
 
         //tat ragdoll
         SetRagdollState(false);
-    }
+    }    
 
     public void TakeDamage(int damage)
     {
@@ -45,6 +52,7 @@ public class Target : MonoBehaviour
         }
         // target bat ragdoll khi het hp
         hp -= damage;
+        DecreaseHealthText(damage);
 
         if (hp <= 0)
         {
@@ -55,6 +63,11 @@ public class Target : MonoBehaviour
             isDead = true;
         }
     }
+
+    public void DecreaseHealthText(int value)
+    {
+        health.CurrentHealth -= value;
+    }    
 
     void SetRagdollState(bool state)
     {

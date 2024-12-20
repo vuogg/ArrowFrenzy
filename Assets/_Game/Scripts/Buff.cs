@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Buff : MonoBehaviour
 {
+    [SerializeField] private BuffText buffText;
     [SerializeField] private float cooldownDuration = 5f;
     [SerializeField] private int arrowMultiplier = 3;
     [SerializeField] private Arrow arrowPrefab;
@@ -11,6 +12,11 @@ public class Buff : MonoBehaviour
     [SerializeField] private Transform arrowSpawnPoint;
     [SerializeField] private float arrowSpeed = 10f;
     private bool isCooldown = false;
+
+    private void Start()
+    {
+        buffText.OnInit(arrowMultiplier);
+    }
 
     public void ArrowMultiply(Vector3 direction)
     {

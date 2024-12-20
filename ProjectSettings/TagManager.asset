@@ -8,15 +8,16 @@ TagManager:
   - Target
   - FxTemporaire
   - Arrow
-  - Buff
+  - Spine
+  - GreenBuff
+  - YellowBuff
+  - Greenx9
+  - Greenx7
   - Greenx3
   - Greenx5
-  - Greenx7
-  - Greenx9
   - Greenx25
   - Yellowx25
   - Yellowx50
-  - Spine
   layers:
   - Default
   - TransparentFX

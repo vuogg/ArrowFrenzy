@@ -11,6 +11,7 @@ public class OnHit : MonoBehaviour
         if (target != null)
         {
             target.TakeDamage(damage);
+            //target.DecreaseHealthText(damage);
         }
     }
 }

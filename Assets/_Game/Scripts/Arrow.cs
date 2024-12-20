@@ -56,11 +56,11 @@ public class Arrow : GameUnit
         if (buff != null)
         {
             buff.ArrowMultiply(velocity.normalized);
-            if (hit.collider.CompareTag("Greenx3") || hit.collider.CompareTag("Greenx5") || hit.collider.CompareTag("Greenx7") || hit.collider.CompareTag("Greenx9") || hit.collider.CompareTag("Greenx25"))
+            if (hit.collider.CompareTag("GreenBuff"))
             {
                 Reflect(hit);
             }
-            else if (hit.collider.CompareTag("Yellowx25") || hit.collider.CompareTag("Yellowx50"))
+            else if (hit.collider.CompareTag("YellowBuff"))
             {
                 Destroy(hit.collider.gameObject);
             }

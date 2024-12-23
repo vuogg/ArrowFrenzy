@@ -16,11 +16,6 @@ public class Arrow : GameUnit
 
     bool isStuck = false;
 
-    public void Launch(Vector3 initialVelocity)
-    {
-        velocity = initialVelocity;
-    }
-
     void Update()
     {
         if (!isStuck)
@@ -37,6 +32,11 @@ public class Arrow : GameUnit
             CheckCollision(reflectLayers, Reflect);
             CheckCollision(buffLayers, HandleBuff);
         }
+    }
+
+    public void Launch(Vector3 initialVelocity)
+    {
+        velocity = initialVelocity;
     }
 
     private void CheckCollision(LayerMask layer, System.Action<RaycastHit> collisionAction)
@@ -136,7 +136,7 @@ public class Arrow : GameUnit
         transform.SetParent(hit.collider.transform);
 
         //vi tri mui ten sau khi gam vao
-        Vector3 hitPosition = hit.point + hit.normal * 0.3f;
+        Vector3 hitPosition = hit.point + hit.normal * 0.25f;
         transform.position = hitPosition;
 
         //huong mui ten sau khi gam vao

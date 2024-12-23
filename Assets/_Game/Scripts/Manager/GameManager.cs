@@ -2,17 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public enum GameState { MainMenu, GamePlay, Pause}
+
+public class GameManager : Singleton<GameManager>
 {
-    // Start is called before the first frame update
-    void Start()
+    private GameState gameState;
+
+    private void Start()
     {
-        
+        ChangeState(GameState.MainMenu);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ChangeState(GameState gameState)
     {
-        
+        this.gameState = gameState;
+    }
+
+    public bool IsState(GameState gameState)
+    {
+        return this.gameState == gameState;
     }
 }

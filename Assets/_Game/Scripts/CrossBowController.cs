@@ -6,8 +6,9 @@ public class CrossBowController : MonoBehaviour
 {
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private Collider crossbowCollider;
-    [SerializeField] private Transform crossbowTransform;
     [SerializeField] private Animator anim;
+    
+    public Transform crossbowTransform;
     private string currentAnimName;
     public Arrow arrowPrefab;
     public Transform shootPoint;
@@ -15,13 +16,13 @@ public class CrossBowController : MonoBehaviour
     Vector2 startTouch;
 
     public int maxBounces = 3;
-    //private bool hasShot = false;
+    private bool hasShot = false;
     //public float arrowSpeed = 10f;
 
     void Update()
     {
-        //if (hasShot)
-        //    return;
+        if (hasShot)
+            return;
         if (Input.GetMouseButtonDown(0))
         {
             ChangeAnim("hold");
@@ -42,6 +43,14 @@ public class CrossBowController : MonoBehaviour
             RotateBow(deltaTouch);
             DrawAimLine();
         }
+    }
+
+    public void OnInit()
+    {
+        hasShot = false;
+        lineRenderer.enabled = true;
+        crossbowCollider.enabled = true;
+        crossbowTransform.localPosition = Vector3.zero;
     }
 
     void DrawAimLine()
@@ -130,10 +139,10 @@ public class CrossBowController : MonoBehaviour
         {
             arrowScript.Launch(shootPoint.forward * arrow.GetComponent<Arrow>().arrowSpeed);
         }
-        
-        //hasShot = true;
-        //lineRenderer.enabled = false;
-        //crossbowCollider.enabled = false;
+
+        hasShot = true;
+        lineRenderer.enabled = false;
+        crossbowCollider.enabled = false;
     }
 
     private void ChangeAnim(string animName)

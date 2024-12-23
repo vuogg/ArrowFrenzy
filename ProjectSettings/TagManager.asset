@@ -11,13 +11,6 @@ TagManager:
   - Spine
   - GreenBuff
   - YellowBuff
-  - Greenx9
-  - Greenx7
-  - Greenx3
-  - Greenx5
-  - Greenx25
-  - Yellowx25
-  - Yellowx50
   layers:
   - Default
   - TransparentFX

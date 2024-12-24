@@ -965,7 +965,7 @@ GameObject:
   - component: {fileID: 1232410618985973884}
   m_Layer: 0
   m_Name: Level02
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1001,6 +1001,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f404f9b0467994f8e237606ec03374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeTargets: []
+  activeArrows: 0
   crossbowPosition: {fileID: 5952718442217033693}
 --- !u!1 &5597500880248856995
 GameObject:
@@ -1292,6 +1294,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Targetx30
       objectReference: {fileID: 0}
+    - target: {fileID: 639947436374451638, guid: bb97e6ee83df6f9489f9b6175b6803ed, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.00000038743013
+      objectReference: {fileID: 0}
+    - target: {fileID: 639947436374451638, guid: bb97e6ee83df6f9489f9b6175b6803ed, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.3459266
+      objectReference: {fileID: 0}
+    - target: {fileID: 639947436374451638, guid: bb97e6ee83df6f9489f9b6175b6803ed, type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 836572605397868555, guid: bb97e6ee83df6f9489f9b6175b6803ed, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.00000005960465
+      objectReference: {fileID: 0}
+    - target: {fileID: 836572605397868555, guid: bb97e6ee83df6f9489f9b6175b6803ed, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.3459617
+      objectReference: {fileID: 0}
+    - target: {fileID: 836572605397868555, guid: bb97e6ee83df6f9489f9b6175b6803ed, type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.00000011920926
+      objectReference: {fileID: 0}
     - target: {fileID: 1478856437895694317, guid: bb97e6ee83df6f9489f9b6175b6803ed, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1331,6 +1357,18 @@ PrefabInstance:
     - target: {fileID: 1478856437895694317, guid: bb97e6ee83df6f9489f9b6175b6803ed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2072132853514434730, guid: bb97e6ee83df6f9489f9b6175b6803ed, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.23675673
+      objectReference: {fileID: 0}
+    - target: {fileID: 2072132853514434730, guid: bb97e6ee83df6f9489f9b6175b6803ed, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.27735478
+      objectReference: {fileID: 0}
+    - target: {fileID: 2072132853514434730, guid: bb97e6ee83df6f9489f9b6175b6803ed, type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.0021651236
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

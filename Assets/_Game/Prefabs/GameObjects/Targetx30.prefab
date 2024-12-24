@@ -97,7 +97,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.23675677, y: 0.27735466, z: 0.0021647445}
+  m_ConnectedAnchor: {x: -0.23675676, y: 0.27735472, z: 0.0021649634}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -266,6 +266,7 @@ MonoBehaviour:
   hp: 30
   force: 30
   health: {fileID: 2807626395098413223}
+  levelTargets: {fileID: 0}
 --- !u!1 &512542465742338520
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,7 +395,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000611851, y: 0.4957648, z: 0.0017070683}
+  m_ConnectedAnchor: {x: -0.00061187614, y: 0.4957648, z: 0.0017069267}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -772,7 +773,7 @@ GameObject:
   - component: {fileID: 661422639750389059}
   m_Layer: 7
   m_Name: mixamorig:Spine1
-  m_TagString: Spine
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -853,7 +854,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0022497473, y: 0.27231959, z: 0.01211904}
+  m_ConnectedAnchor: {x: -0.0022497268, y: 0.27231956, z: 0.012118861}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -1911,7 +1912,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00000006334183, y: 0.3778434, z: -0.000000029802653}
+  m_ConnectedAnchor: {x: -0.00000006334183, y: 0.37784344, z: 0.00000008940796}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -2614,7 +2615,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.18700233, y: -0.070046015, z: 0.006381875}
+  m_ConnectedAnchor: {x: 0.18700233, y: -0.070046, z: 0.006381956}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -2745,7 +2746,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.18700227, y: -0.07004598, z: 0.0050385054}
+  m_ConnectedAnchor: {x: -0.18700229, y: -0.07004595, z: 0.0050386647}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -3165,7 +3166,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: -1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.24179025, y: 0.26857966, z: 0.0073404247}
+  m_ConnectedAnchor: {x: 0.24179025, y: 0.2685797, z: 0.007340324}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -3328,7 +3329,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000049173826, y: 0.34592625, z: -0.00000005960466}
+  m_ConnectedAnchor: {x: 0.00000041723246, y: 0.34592655, z: -0.000000014901165}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -3522,7 +3523,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00000033900145, y: 0.34596175, z: -0.00000023841852}
+  m_ConnectedAnchor: {x: 0.000000029802326, y: 0.3459617, z: -0.00000011920926}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -3717,7 +3718,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000014900931, y: 0.37785816, z: 0.000000014435453}
+  m_ConnectedAnchor: {x: -0.000000014900931, y: 0.37785816, z: 0.000000007450556}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:

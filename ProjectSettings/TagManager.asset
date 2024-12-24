@@ -11,6 +11,8 @@ TagManager:
   - Spine
   - GreenBuff
   - YellowBuff
+  - Level
+  - LevelBoundary
   layers:
   - Default
   - TransparentFX

@@ -63,27 +63,6 @@ public class CrossBowController : MonoBehaviour
 
         for (int i = 0; i < maxBounces; i++)
         {
-            //RaycastHit hit;
-            //if(Physics.Raycast(currentPosition, aimDirection, out hit, 10f))
-            //{
-            //    lineRenderer.positionCount += 1;
-            //    lineRenderer.SetPosition(lineRenderer.positionCount - 1, hit.point);
-
-            //    if(hit.collider.CompareTag("Target") || hit.collider.CompareTag("Buff"))
-            //    {
-            //        break;
-            //    }
-
-            //    aimDirection = Vector3.Reflect(aimDirection, hit.normal);
-            //    currentPosition = hit.point;
-            //}
-            //else
-            //{
-            //    lineRenderer.positionCount += 1;
-            //    lineRenderer.SetPosition(lineRenderer.positionCount - 1, currentPosition + aimDirection * 10f);
-            //    break;
-            //}
-
             RaycastHit hit;
             if (Physics.Raycast(currentPosition, aimDirection, out hit, 10f))
             {

@@ -685,7 +685,7 @@ GameObject:
   - component: {fileID: 7023694684490596254}
   m_Layer: 0
   m_Name: Level06
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -721,6 +721,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f404f9b0467994f8e237606ec03374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeTargets: []
+  activeArrows: 0
   crossbowPosition: {fileID: 8981087933477637209}
 --- !u!1 &4020169016320942008
 GameObject:

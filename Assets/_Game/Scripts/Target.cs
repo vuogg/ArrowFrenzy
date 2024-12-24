@@ -14,6 +14,7 @@ public class Target : MonoBehaviour
     [SerializeField] private HealthText health;
 
     //private Vector3 lastHitDirection;
+    public Level levelTargets;
     private string currentAnimName;
     bool isHit = false;
     bool isDead = false;
@@ -23,21 +24,52 @@ public class Target : MonoBehaviour
         OnInit();
     }
 
+    //private void OnInit()
+    //{
+    //    health.OnInit(hp);
+    //    //if(capsuleCollider == null)
+    //    //{
+    //    //    capsuleCollider = GetComponent<CapsuleCollider>();
+    //    //}
+    //    ChangeAnim("isDance");
+
+    //    //Lay danh sach rb tu cac xuong
+    //    ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
+
+    //    //tat ragdoll
+    //    SetRagdollState(false);
+    //}    
+
     private void OnInit()
     {
         health.OnInit(hp);
-        //if(capsuleCollider == null)
-        //{
-        //    capsuleCollider = GetComponent<CapsuleCollider>();
-        //}
         ChangeAnim("isDance");
 
-        //Lay danh sach rb tu cac xuong
         ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
-
-        //tat ragdoll
         SetRagdollState(false);
-    }    
+
+        // dang ky target voi level
+        //Level levelTargets = FindObjectOfType<Level>();
+        GameObject levelObject = GameObject.FindGameObjectWithTag("Level");
+        if (levelObject != null)
+        {
+            Debug.Log("level khoi tao != null");
+            levelTargets = levelObject.GetComponent<Level>();
+            if (levelTargets != null)
+            {
+                Debug.Log("target khoi tao != null");
+                levelTargets.RegisterTarget(this);
+            }
+            else
+            {
+                Debug.Log("target khoi tao == null");
+            }
+        }
+        else
+        {
+            Debug.Log("level khoi tao == null");
+        }
+    }
 
     public void TakeDamage(int damage)
     {
@@ -54,13 +86,42 @@ public class Target : MonoBehaviour
         hp -= damage;
         DecreaseHealthText(damage);
 
+        //if (hp <= 0)
+        //{
+        //    anim.enabled = false;
+        //    EnableRagdoll();
+        //    ApplyRagdollForce();
+        //    //ApplyRagdollForce(lastHitDirection);
+        //    isDead = true;
+        //}
+
         if (hp <= 0)
         {
             anim.enabled = false;
             EnableRagdoll();
             ApplyRagdollForce();
-            //ApplyRagdollForce(lastHitDirection);
             isDead = true;
+
+            //huy dang ky target khoi level
+            GameObject levelObject = GameObject.FindGameObjectWithTag("Level");
+            if (levelObject != null)
+            {
+                Debug.Log("level bi huy != null");
+                levelTargets = levelObject.GetComponent<Level>();
+                if (levelTargets != null)
+                {
+                    Debug.Log("target bi huy != null");
+                    levelTargets.UnregisterTarget(this);
+                }
+                else
+                {
+                    Debug.Log("target bi huy == null");
+                }
+            }
+            else
+            {
+                Debug.Log("level bi huy == null");
+            }
         }
     }
 

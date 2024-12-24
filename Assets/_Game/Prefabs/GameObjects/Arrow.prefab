@@ -126,6 +126,9 @@ MonoBehaviour:
   col: {fileID: 4797812272251637675}
   rb: {fileID: 1271852427416838883}
   trailRenderer: {fileID: 9026186416653436034}
+  maxReflects: 100
+  currentReflects: 0
+  level: {fileID: 0}
   reflectLayers:
     serializedVersion: 2
     m_Bits: 8
@@ -315,7 +318,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6632099731382310095
 Transform:
   m_ObjectHideFlags: 0

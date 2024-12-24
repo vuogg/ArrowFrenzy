@@ -12,7 +12,7 @@ public class LevelManager : Singleton<LevelManager>
 
     private void Awake()
     {
-        levelIndex = PlayerPrefs.GetInt("Level", 1);
+        //levelIndex = PlayerPrefs.GetInt("Level", 1);
     }
 
     private void Start()
@@ -45,7 +45,7 @@ public class LevelManager : Singleton<LevelManager>
             Destroy(currentLevel.gameObject);
         }
 
-        if (levelIndex < levelPrefabs.Count)
+        if (levelIndex <= levelPrefabs.Count)
         {
             currentLevel = Instantiate(levelPrefabs[indexLevel]);
         }

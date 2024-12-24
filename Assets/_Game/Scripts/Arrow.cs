@@ -8,7 +8,11 @@ public class Arrow : GameUnit
     [SerializeField] private BoxCollider col;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private TrailRenderer trailRenderer;
+    [SerializeField] private int maxReflects = 20;
+    [SerializeField] private int currentReflects;
+
     private Vector3 velocity;
+    public Level level;
     public LayerMask reflectLayers;
     public LayerMask buffLayers;
     public LayerMask targetLayers;
@@ -16,11 +20,26 @@ public class Arrow : GameUnit
 
     bool isStuck = false;
 
-    void Update()
+    private void Start()
+    {
+        OnInit();
+    }
+
+    private void Update()
     {
         if (!isStuck)
         {
-            //chuyen huong mui ten sau khi nay
+            float stepDistance = velocity.magnitude * Time.deltaTime;
+            Vector3 startPosition = transform.position;
+
+            for (float i = 0; i < stepDistance; i += 0.1f)
+            {
+                Vector3 checkPosition = startPosition + velocity.normalized * i;
+                CheckCollision(checkPosition, reflectLayers, Reflect);
+                CheckCollision(checkPosition, targetLayers, HitTarget);
+                CheckCollision(checkPosition, buffLayers, HandleBuff);
+            }
+
             transform.position += velocity * Time.deltaTime;
 
             if (velocity != Vector3.zero)
@@ -28,24 +47,41 @@ public class Arrow : GameUnit
                 transform.rotation = Quaternion.LookRotation(velocity);
             }
 
-            CheckCollision(targetLayers, HitTarget);
-            CheckCollision(reflectLayers, Reflect);
-            CheckCollision(buffLayers, HandleBuff);
+            CheckOutOfBounds();
         }
     }
+
+    private void CheckOutOfBounds()
+    {
+        if(Mathf.Abs(transform.position.x) > 15f || Mathf.Abs(transform.position.z) > 20f)
+        {
+            Debug.Log("Despawn do bay ra khoi map");
+            SimplePool.Despawn(this);
+            UnregisterArrow();
+        }
+    }
+
+    public void OnInit()
+    {
+        //isStuck = false;
+        currentReflects = 0;
+        //rb.isKinematic = false;
+        //col.enabled = true;
+        //trailRenderer.enabled = true;
+        RegisterArrow();
+    }    
 
     public void Launch(Vector3 initialVelocity)
     {
         velocity = initialVelocity;
     }
 
-    private void CheckCollision(LayerMask layer, System.Action<RaycastHit> collisionAction)
+    private void CheckCollision(Vector3 position, LayerMask layer, System.Action<RaycastHit> collisionAction)
     {
         RaycastHit hit;
-        //Debug.DrawRay(transform.position, velocity.normalized, Color.red, velocity.magnitude * Time.deltaTime + 0.1f);
-        if(Physics.Raycast(transform.position, velocity.normalized, out hit, velocity.magnitude * Time.deltaTime + 0.1f, layer))
+        float checkDistance = velocity.magnitude * Time.deltaTime + 0.01f;  // Điều chỉnh khoảng cách raycast
+        if (Physics.Raycast(position, velocity.normalized, out hit, checkDistance, layer))
         {
-            //Debug.Log(hit.collider.name);
             collisionAction(hit);
         }
     }
@@ -88,60 +124,85 @@ public class Arrow : GameUnit
         }
 
         StickToTarget(hit);
+        UnregisterArrow();
     }
 
-        void Reflect(RaycastHit hit)
+    void Reflect(RaycastHit hit)
+    {
+        //vector phap tuyen va phan xa
+        //Phap tuyen tai diem va cham
+        Vector3 normal = hit.normal;
+
+        //vector phan xa
+        velocity = Vector3.Reflect(velocity, normal);
+
+        //dich chuyen 1 chut de khong va cham lap lai
+        transform.position = hit.point + normal * 0.01f;
+
+        currentReflects++;
+        if(currentReflects >= maxReflects)
         {
-            //vector phap tuyen va phan xa
-            //Phap tuyen tai diem va cham
-            Vector3 normal = hit.normal;
-
-             //vector phan xa
-            velocity = Vector3.Reflect(velocity, normal);
-
-            //dich chuyen 1 chut de khong va cham lap lai
-            transform.position = hit.point + normal * 0.01f;
+            SimplePool.Despawn(this);
+            UnregisterArrow();
         }
+    }
 
     private void StickToTarget(RaycastHit hit)
     {
         rb.isKinematic = true;
-        col.enabled = false;
+        //col.enabled = false;
         trailRenderer.enabled = false;
-
-        // gan tag vao cot song cho de tim
-        //Transform spineBone = null;
-        //Target targetScript = hit.collider.GetComponent<Target>();
-        //if (targetScript != null)
-        //{
-        //    GameObject spineObject = GameObject.FindGameObjectWithTag("Spine");
-        //    if (spineObject != null)
-        //    {
-        //        spineBone = spineObject.transform;
-        //    }
-        //}
-
-        ////Gan mui ten vao xuong song hoac collider neu khong tim thay tag
-        //if (spineBone != null)
-        //{
-        //    transform.SetParent(spineBone);
-        //}
-        //else
-        //{
-        //    Debug.LogError(hit.collider.name);
-        //    transform.SetParent(hit.collider.transform);
-        //}
 
         //Debug.LogError(hit.collider.name);
         transform.SetParent(hit.collider.transform);
 
         //vi tri mui ten sau khi gam vao
-        Vector3 hitPosition = hit.point + hit.normal * 0.25f;
+        //Vector3 hitPosition = hit.point + hit.normal * 0.3f;
+        //Vector3 hitPosition = hit.collider.transform.position;
+        float depth = 0.3f;
+        Vector3 hitPosition = hit.point - transform.forward * depth;
+
         transform.position = hitPosition;
 
         //huong mui ten sau khi gam vao
         transform.rotation = Quaternion.LookRotation(velocity.normalized);
 
         isStuck = true;
+    }
+
+    public void RegisterArrow()
+    {
+        GameObject levelObject = GameObject.FindGameObjectWithTag("Level");
+        //levelArrow = GetComponent<Level>();
+        if (levelObject != null)
+        {
+            level = levelObject.GetComponent<Level>();
+            if (level != null)
+            {
+                level.RegisterArrow();
+            }
+        }
+        else
+        {
+            Debug.Log("level null");
+        }
+    }
+
+    public void UnregisterArrow()
+    {
+        GameObject levelObject = GameObject.FindGameObjectWithTag("Level");
+        //levelArrow = GetComponent<Level>();
+        if (levelObject != null)
+        {
+            level = levelObject.GetComponent<Level>();
+            if (level != null)
+            {
+                level.UnregisterArrow();
+            }
+        }
+        else
+        {
+            Debug.Log("level null");
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -64,11 +65,11 @@ public class Arrow : GameUnit
     public void OnInit()
     {
         //isStuck = false;
+        RegisterArrow();
         currentReflects = 0;
         //rb.isKinematic = false;
         //col.enabled = true;
         //trailRenderer.enabled = true;
-        RegisterArrow();
     }    
 
     public void Launch(Vector3 initialVelocity)
@@ -179,7 +180,7 @@ public class Arrow : GameUnit
             level = levelObject.GetComponent<Level>();
             if (level != null)
             {
-                level.RegisterArrow();
+                level.RegisterArrow(this);
             }
         }
         else
@@ -197,7 +198,7 @@ public class Arrow : GameUnit
             level = levelObject.GetComponent<Level>();
             if (level != null)
             {
-                level.UnregisterArrow();
+                level.UnregisterArrow(this);
             }
         }
         else

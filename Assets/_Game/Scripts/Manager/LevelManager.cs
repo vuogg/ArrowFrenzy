@@ -6,7 +6,7 @@ using UnityEngine.Rendering.VirtualTexturing;
 public class LevelManager : Singleton<LevelManager>
 {
     [SerializeField] private int levelIndex;
-    public List<Level> levelPrefabs = new List<Level>();
+    public Level[] levelPrefabs;
     public CrossBowController crossBowController;
     public Level currentLevel;
 
@@ -17,10 +17,13 @@ public class LevelManager : Singleton<LevelManager>
 
     private void Start()
     {
-        LoadLevel();
+        LoadLevel(levelIndex - 1);
+        OnInit();
+        UIManager.Instance.OpenUI<MainMenu>();
     }
     public void OnInit()
     {
+        currentLevel.OnInit();
         crossBowController.OnInit();
         //CrossBowController crossBowController = GetComponent<CrossBowController>();
         if (currentLevel != null && currentLevel.crossbowPosition != null)
@@ -32,25 +35,20 @@ public class LevelManager : Singleton<LevelManager>
         }
     }
 
-    public void LoadLevel()
-    {
-        LoadLevel(levelIndex - 1);
-        OnInit();
-    }
-
-    public void LoadLevel(int indexLevel)
+    public void LoadLevel(int level)
     {
         if(currentLevel != null)
         {
             Destroy(currentLevel.gameObject);
         }
 
-        if (levelIndex <= levelPrefabs.Count)
+        if (level < levelPrefabs.Length)
         {
-            currentLevel = Instantiate(levelPrefabs[indexLevel]);
+            currentLevel = Instantiate(levelPrefabs[level]);
+            currentLevel.OnInit();
         }
 
-        else if(levelIndex > levelPrefabs.Count)
+        else if(levelIndex < levelPrefabs.Length)
         {
             Debug.Log("All levels completed!");
             GameManager.Instance.ChangeState(GameState.MainMenu);
@@ -69,24 +67,29 @@ public class LevelManager : Singleton<LevelManager>
         GameManager.Instance.ChangeState(GameState.Pause);
     }
 
-    public void OnRetry()
-    {
-        OnReset();
-        LoadLevel();
-
-        GameManager.Instance.ChangeState(GameState.MainMenu);
-    }    
-
     public void OnReset()
     {
         SimplePool.CollectAll();
     }
 
+    public void OnRetry()
+    {
+        OnReset();
+        LoadLevel(levelIndex - 1);
+        OnInit();
+        UIManager.Instance.OpenUI<MainMenu>();
+    }    
+
+
     public void OnNextLevel()
     {
         levelIndex++;
-        PlayerPrefs.SetInt("Level", levelIndex);
+        //PlayerPrefs.SetInt("Level", levelIndex);
+        //OnReset();
+        ////LoadLevel();
         OnReset();
-        LoadLevel();
+        LoadLevel(levelIndex - 1);
+        OnInit();
+        UIManager.Instance.OpenUI<MainMenu>();
     }
 }

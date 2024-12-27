@@ -9,6 +9,19 @@ public class Level : MonoBehaviour
 
     public Transform crossbowPosition;
 
+    public void OnInit()
+    {
+        activeArrows = 0;
+        activeTargets.Clear();
+
+        Target[] targets = GetComponentsInChildren<Target>();
+        foreach (var target in targets)
+        {
+            RegisterTarget(target);
+            target.OnInit(); // Gọi OnInit của từng target để chúng sẵn sàng
+        }
+    }
+
     public void RegisterTarget(Target target)
     {
         if (!activeTargets.Contains(target))
@@ -27,15 +40,21 @@ public class Level : MonoBehaviour
         CheckWinCondition();
     }
 
-    public void RegisterArrow()
+    public void RegisterArrow(Arrow arrow)
     {
-        activeArrows++;
+        if (arrow != null)
+        {
+            activeArrows++;
+        }
+        
     }
 
-    public void UnregisterArrow()
+    public void UnregisterArrow(Arrow arrow)
     {
-        activeArrows--;
-
+        if (arrow != null)
+        {
+            activeArrows--;
+        }
         CheckLoseCondition();
     }
 
@@ -44,7 +63,9 @@ public class Level : MonoBehaviour
         if (activeTargets.Count == 0)
         {
             Debug.Log("You Win!");
-            // Gọi giao diện hoặc sự kiện xử lý thắng
+            UIManager.Instance.OpenUI<Win>();
+            UIManager.Instance.CloseUI<GamePlay>();
+            GameManager.Instance.ChangeState(GameState.Pause);
         }
     }
 
@@ -53,7 +74,9 @@ public class Level : MonoBehaviour
         if (activeArrows <= 0 && activeTargets.Count > 0)
         {
             Debug.Log("You Lose!");
-            // Gọi giao diện hoặc sự kiện xử lý thua
+            UIManager.Instance.OpenUI<Lose>();
+            UIManager.Instance.CloseUI<GamePlay>();
+            GameManager.Instance.ChangeState(GameState.Pause);
         }
     }
 }

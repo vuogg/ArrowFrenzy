@@ -21,27 +21,55 @@ public class CrossBowController : MonoBehaviour
 
     void Update()
     {
+        //if (hasShot || !GameManager.Instance.IsState(GameState.GamePlay))
+        //    return;
+        //if (GameManager.Instance.IsState(GameState.GamePlay) && Input.GetMouseButtonDown(0))
+        //{
+        //    ChangeAnim("hold");
+        //    startTouch = Input.mousePosition;
+        //    isDragging = true;
+        //}
+        //else if (Input.GetMouseButtonUp(0))
+        //{
+        //    ChangeAnim("shoot");
+        //    isDragging = false;
+        //    ShootArrow();
+        //}
+
+        //if (isDragging && GameManager.Instance.IsState(GameState.GamePlay))
+        //{
+        //    Vector2 currentTouch = Input.mousePosition;
+        //    float deltaTouch = currentTouch.x - startTouch.x;
+        //    RotateBow(deltaTouch);
+        //    DrawAimLine();
+        //}
         if (hasShot)
             return;
-        if (Input.GetMouseButtonDown(0))
-        {
-            ChangeAnim("hold");
-            startTouch = Input.mousePosition;
-            isDragging = true;
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            ChangeAnim("shoot");
-            isDragging = false;
-            ShootArrow();
-        }
 
-        if (isDragging)
+        // Chỉ xử lý khi đang trong trạng thái GamePlay
+        if (GameManager.Instance.IsState(GameState.GamePlay))
         {
-            Vector2 currentTouch = Input.mousePosition;
-            float deltaTouch = currentTouch.x - startTouch.x;
-            RotateBow(deltaTouch);
-            DrawAimLine();
+            if (Input.GetMouseButtonDown(0))
+            {
+                ChangeAnim("hold");
+                startTouch = Input.mousePosition;
+                isDragging = true;
+            }
+            else if (Input.GetMouseButtonUp(0) && isDragging)
+            {
+                ChangeAnim("shoot");
+                isDragging = false;
+                ShootArrow();
+                hasShot = true;
+            }
+
+            if (isDragging)
+            {
+                Vector2 currentTouch = Input.mousePosition;
+                float deltaTouch = currentTouch.x - startTouch.x;
+                RotateBow(deltaTouch);
+                DrawAimLine();
+            }
         }
     }
 

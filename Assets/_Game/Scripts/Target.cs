@@ -40,7 +40,7 @@ public class Target : MonoBehaviour
     //    SetRagdollState(false);
     //}    
 
-    private void OnInit()
+    public void OnInit()
     {
         health.OnInit(hp);
         ChangeAnim("isDance");
@@ -48,27 +48,31 @@ public class Target : MonoBehaviour
         ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
         SetRagdollState(false);
 
+        isHit = false ;
+        isDead = false ;    
         // dang ky target voi level
         //Level levelTargets = FindObjectOfType<Level>();
-        GameObject levelObject = GameObject.FindGameObjectWithTag("Level");
-        if (levelObject != null)
-        {
-            Debug.Log("level khoi tao != null");
-            levelTargets = levelObject.GetComponent<Level>();
-            if (levelTargets != null)
-            {
-                Debug.Log("target khoi tao != null");
-                levelTargets.RegisterTarget(this);
-            }
-            else
-            {
-                Debug.Log("target khoi tao == null");
-            }
-        }
-        else
-        {
-            Debug.Log("level khoi tao == null");
-        }
+
+
+        //GameObject levelObject = GameObject.FindGameObjectWithTag("Level");
+        //if (levelObject != null)
+        //{
+        //    Debug.Log("level khoi tao != null");
+        //    levelTargets = levelObject.GetComponent<Level>();
+        //    if (levelTargets != null)
+        //    {
+        //        Debug.Log("target khoi tao != null");
+        //        levelTargets.RegisterTarget(this);
+        //    }
+        //    else
+        //    {
+        //        Debug.Log("target khoi tao == null");
+        //    }
+        //}
+        //else
+        //{
+        //    Debug.Log("level khoi tao == null");
+        //}
     }
 
     public void TakeDamage(int damage)

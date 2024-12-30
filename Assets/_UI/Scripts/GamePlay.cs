@@ -6,7 +6,9 @@ public class GamePlay : UICanvas
 {
     public void SettingButton()
     {
-        GameManager.Instance.ChangeState(GameState.Pause);
+        LevelManager.Instance.OnPause();
+        //GameManager.Instance.ChangeState(GameState.Pause);
         UIManager.Instance.OpenUI<Settings>();
+        UIManager.Instance.CloseUI<GamePlay>();
     }
 }

@@ -50,9 +50,11 @@ public class LevelManager : Singleton<LevelManager>
 
         else if(levelIndex < levelPrefabs.Length)
         {
-            Debug.Log("All levels completed!");
-            GameManager.Instance.ChangeState(GameState.MainMenu);
-            return;
+            //Debug.Log("All levels completed!");
+            //GameManager.Instance.ChangeState(GameState.MainMenu);
+            //return;
+            levelIndex = 0;
+            currentLevel = Instantiate(levelPrefabs[0]);
         }    
 
     }
@@ -60,11 +62,22 @@ public class LevelManager : Singleton<LevelManager>
     public void OnStartGame()
     {
         GameManager.Instance.ChangeState(GameState.GamePlay);
+
+
+        //
+        //OnInit();
     }
 
     public void OnPause()
     {
+        crossBowController.hasShot = true;
         GameManager.Instance.ChangeState(GameState.Pause);
+    }
+
+    public void OnContinue()
+    {
+        crossBowController.hasShot = false;
+        GameManager.Instance.ChangeState(GameState.GamePlay);
     }
 
     public void OnReset()
@@ -77,7 +90,9 @@ public class LevelManager : Singleton<LevelManager>
         OnReset();
         LoadLevel(levelIndex - 1);
         OnInit();
-        UIManager.Instance.OpenUI<MainMenu>();
+        UIManager.Instance.OpenUI<GamePlay>();
+        //OnInit();
+        //UIManager.Instance.OpenUI<MainMenu>();
     }    
 
 
@@ -90,6 +105,6 @@ public class LevelManager : Singleton<LevelManager>
         OnReset();
         LoadLevel(levelIndex - 1);
         OnInit();
-        UIManager.Instance.OpenUI<MainMenu>();
+        UIManager.Instance.OpenUI<GamePlay>();
     }
 }

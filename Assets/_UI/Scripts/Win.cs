@@ -14,6 +14,7 @@ public class Win : UICanvas
     public void NextLevelButton()
     {
         LevelManager.Instance.OnNextLevel();
+        LevelManager.Instance.OnStartGame();
         Close(1f);
     }
 }

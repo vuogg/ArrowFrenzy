@@ -8,6 +8,6 @@ public class Lose : UICanvas
     {
         LevelManager.Instance.OnRetry();
         LevelManager.Instance.OnStartGame();
-        Close(1f);
+        Close(0);
     }
 }

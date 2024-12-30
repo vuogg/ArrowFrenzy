@@ -60,12 +60,20 @@ public class Level : MonoBehaviour
 
     private void CheckWinCondition()
     {
+        //if (activeTargets.Count == 0)
+        //{
+        //    Debug.Log("You Win!");
+        //    GameManager.Instance.ChangeState(GameState.Pause);
+        //    UIManager.Instance.OpenUI<Win>();
+        //    UIManager.Instance.CloseUI<GamePlay>();
+        //    LevelManager.Instance.OnReset();
+        //}
         if (activeTargets.Count == 0)
         {
             Debug.Log("You Win!");
+            GameManager.Instance.ChangeState(GameState.Pause);
             UIManager.Instance.OpenUI<Win>();
             UIManager.Instance.CloseUI<GamePlay>();
-            GameManager.Instance.ChangeState(GameState.Pause);
         }
     }
 
@@ -74,9 +82,9 @@ public class Level : MonoBehaviour
         if (activeArrows <= 0 && activeTargets.Count > 0)
         {
             Debug.Log("You Lose!");
+            GameManager.Instance.ChangeState(GameState.Pause);
             UIManager.Instance.OpenUI<Lose>();
             UIManager.Instance.CloseUI<GamePlay>();
-            GameManager.Instance.ChangeState(GameState.Pause);
         }
     }
 }

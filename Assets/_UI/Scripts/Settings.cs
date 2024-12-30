@@ -17,8 +17,10 @@ public class Settings : UICanvas
 
     public void ContinueButton()
     {
+        UIManager.Instance.OpenUI<GamePlay>();
+        LevelManager.Instance.OnContinue();
         Time.timeScale = 1;
-        Close(0);
+        Close(0.5f);
     }
 
     public void RetryButton()
@@ -26,6 +28,6 @@ public class Settings : UICanvas
         Time.timeScale = 1;
         LevelManager.Instance.OnRetry();
         LevelManager.Instance.OnStartGame();
-        Close(1f);
+        Close(0.5f);
     }
 }

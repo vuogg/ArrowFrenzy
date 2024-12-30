@@ -7,9 +7,7 @@ public class MainMenu : UICanvas
     public void PlayButton()
     {
         LevelManager.Instance.OnStartGame();
-
-        UIManager.Instance.OpenUI<GamePlay>();
-
         UIManager.Instance.CloseUI<MainMenu>();
+        UIManager.Instance.OpenUI<GamePlay>();
     }
 }

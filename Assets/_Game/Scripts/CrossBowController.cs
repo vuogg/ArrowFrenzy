@@ -16,43 +16,24 @@ public class CrossBowController : MonoBehaviour
     Vector2 startTouch;
 
     public int maxBounces = 3;
-    private bool hasShot = false;
+    public bool hasShot;
     //public float arrowSpeed = 10f;
 
     void Update()
     {
-        //if (hasShot || !GameManager.Instance.IsState(GameState.GamePlay))
-        //    return;
-        //if (GameManager.Instance.IsState(GameState.GamePlay) && Input.GetMouseButtonDown(0))
-        //{
-        //    ChangeAnim("hold");
-        //    startTouch = Input.mousePosition;
-        //    isDragging = true;
-        //}
-        //else if (Input.GetMouseButtonUp(0))
-        //{
-        //    ChangeAnim("shoot");
-        //    isDragging = false;
-        //    ShootArrow();
-        //}
-
-        //if (isDragging && GameManager.Instance.IsState(GameState.GamePlay))
-        //{
-        //    Vector2 currentTouch = Input.mousePosition;
-        //    float deltaTouch = currentTouch.x - startTouch.x;
-        //    RotateBow(deltaTouch);
-        //    DrawAimLine();
-        //}
         if (hasShot)
+        {
+            lineRenderer.enabled = false;
             return;
+        }
 
-        // Chỉ xử lý khi đang trong trạng thái GamePlay
         if (GameManager.Instance.IsState(GameState.GamePlay))
         {
             if (Input.GetMouseButtonDown(0))
             {
                 ChangeAnim("hold");
                 startTouch = Input.mousePosition;
+                lineRenderer.enabled = true;
                 isDragging = true;
             }
             else if (Input.GetMouseButtonUp(0) && isDragging)
@@ -76,7 +57,7 @@ public class CrossBowController : MonoBehaviour
     public void OnInit()
     {
         hasShot = false;
-        lineRenderer.enabled = true;
+        lineRenderer.enabled = false;
         crossbowCollider.enabled = true;
         crossbowTransform.localPosition = Vector3.zero;
     }

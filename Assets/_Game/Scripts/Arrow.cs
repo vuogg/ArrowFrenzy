@@ -9,9 +9,9 @@ public class Arrow : GameUnit
     [SerializeField] private BoxCollider col;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private TrailRenderer trailRenderer;
-    [SerializeField] private int maxReflects = 20;
-    [SerializeField] private int currentReflects;
 
+    public int maxReflects = 20;
+    public int currentReflects;
     private Vector3 velocity;
     public Level level;
     public LayerMask reflectLayers;
@@ -21,10 +21,10 @@ public class Arrow : GameUnit
 
     bool isStuck = false;
 
-    private void Start()
-    {
-        OnInit();
-    }
+    //private void Start()
+    //{
+    //    OnInit();
+    //}
 
     private void Update()
     {
@@ -64,12 +64,13 @@ public class Arrow : GameUnit
 
     public void OnInit()
     {
-        //isStuck = false;
-        RegisterArrow();
+        isStuck = false;
+        //RegisterArrow();
         currentReflects = 0;
-        //rb.isKinematic = false;
-        //col.enabled = true;
-        //trailRenderer.enabled = true;
+        rb.isKinematic = false;
+        col.enabled = true;
+        trailRenderer.enabled = true;
+        level = null;
     }    
 
     public void Launch(Vector3 initialVelocity)

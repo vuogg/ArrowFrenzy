@@ -23,7 +23,6 @@ public class LevelManager : Singleton<LevelManager>
     }
     public void OnInit()
     {
-        currentLevel.OnInit();
         crossBowController.OnInit();
         //CrossBowController crossBowController = GetComponent<CrossBowController>();
         if (currentLevel != null && currentLevel.crossbowPosition != null)
@@ -48,7 +47,7 @@ public class LevelManager : Singleton<LevelManager>
             currentLevel.OnInit();
         }
 
-        else if(levelIndex < levelPrefabs.Length)
+        else if(level >= levelPrefabs.Length)
         {
             //Debug.Log("All levels completed!");
             //GameManager.Instance.ChangeState(GameState.MainMenu);

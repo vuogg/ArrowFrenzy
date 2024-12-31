@@ -186,7 +186,7 @@ MonoBehaviour:
   Pool:
   - root: {fileID: 116603176}
     prefab: {fileID: 7523215244210309044, guid: 9cf91ed6a1c1f3542abba4523b859489, type: 3}
-    amount: 400
+    amount: 0
     collect: 1
   Particle: []
 --- !u!4 &214245181
@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91c3fe1872f079249be4c0cbf92e7a13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanvasParentTF: {fileID: 0}
+  CanvasParentTF: {fileID: 1986279394}
 --- !u!1 &509971777
 GameObject:
   m_ObjectHideFlags: 0

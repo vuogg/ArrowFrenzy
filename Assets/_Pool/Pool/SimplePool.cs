@@ -64,6 +64,11 @@ public static class SimplePool
             GameUnit obj = Spawn();
 
             obj.TF.SetPositionAndRotation(pos, rot);
+            if(obj is Arrow arrow)
+            {
+                arrow.OnInit();
+                arrow.RegisterArrow();
+            }
 
             return obj;
         }

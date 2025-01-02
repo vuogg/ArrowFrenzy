@@ -13,9 +13,9 @@ public class LevelManager : Singleton<LevelManager>
     //public CrossBowController crossBowController;
     public Level currentLevel;
 
-    private void Awake()
+    private void Start()
     {
-        //levelIndex = PlayerPrefs.GetInt("Level", 1);
+        levelIndex = PlayerPrefs.GetInt("Level", 1);
         UIManager.Instance.OpenUI<MainMenu>().ChangeAnim("fadeIn");
     }
 
@@ -92,10 +92,12 @@ public class LevelManager : Singleton<LevelManager>
     public void OnNextLevel()
     {
         levelIndex++;
-        //PlayerPrefs.SetInt("Level", levelIndex);
+        PlayerPrefs.SetInt("Level", levelIndex);
         //OnReset();
         ////LoadLevel();
         OnReset();
         UIManager.Instance.OpenUI<GamePlay>();
     }
 }
+//todo: fix playerprefs
+

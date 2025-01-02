@@ -8,13 +8,13 @@ public class Win : UICanvas
     {
         LevelManager.Instance.OnRetry();
         LevelManager.Instance.OnStartGame();
-        Close(1f);
+        Close(0.5f);
     }
 
     public void NextLevelButton()
     {
         LevelManager.Instance.OnNextLevel();
         LevelManager.Instance.OnStartGame();
-        Close(1f);
+        Close(0.5f);
     }
 }

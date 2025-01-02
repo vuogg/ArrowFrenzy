@@ -13,24 +13,15 @@ public class LevelManager : Singleton<LevelManager>
     private void Awake()
     {
         //levelIndex = PlayerPrefs.GetInt("Level", 1);
+        UIManager.Instance.OpenUI<MainMenu>().ChangeAnim("fadeIn");
     }
 
-    private void Start()
-    {
-        LoadLevel(levelIndex - 1);
-        OnInit();
-        UIManager.Instance.OpenUI<MainMenu>();
-    }
     public void OnInit()
     {
         crossBowController.OnInit();
-        //CrossBowController crossBowController = GetComponent<CrossBowController>();
         if (currentLevel != null && currentLevel.crossbowPosition != null)
         {
-            //crossbowTransform.position = level.crossbowPosition.position;
-            //crossbowTransform.rotation = level.crossbowPosition.rotation;
-            crossBowController.transform.position = currentLevel.crossbowPosition.position;
-            crossBowController.transform.rotation = currentLevel.crossbowPosition.rotation;
+            crossBowController.transform.SetPositionAndRotation(currentLevel.crossbowPosition.position, currentLevel.crossbowPosition.rotation);
         }
     }
 
@@ -49,33 +40,27 @@ public class LevelManager : Singleton<LevelManager>
 
         else if(level >= levelPrefabs.Length)
         {
-            //Debug.Log("All levels completed!");
-            //GameManager.Instance.ChangeState(GameState.MainMenu);
-            //return;
             levelIndex = 0;
-            currentLevel = Instantiate(levelPrefabs[0]);
+            currentLevel = Instantiate(levelPrefabs[0]);//todo
         }    
 
     }
 
     public void OnStartGame()
     {
+        LoadLevel(levelIndex - 1);
         GameManager.Instance.ChangeState(GameState.GamePlay);
-
-
-        //
-        //OnInit();
+        OnInit();
     }
 
     public void OnPause()
     {
-        crossBowController.hasShot = true;
         GameManager.Instance.ChangeState(GameState.Pause);
     }
 
     public void OnContinue()
     {
-        crossBowController.hasShot = false;
+        crossBowController.ResetState();
         GameManager.Instance.ChangeState(GameState.GamePlay);
     }
 
@@ -87,11 +72,7 @@ public class LevelManager : Singleton<LevelManager>
     public void OnRetry()
     {
         OnReset();
-        LoadLevel(levelIndex - 1);
-        OnInit();
         UIManager.Instance.OpenUI<GamePlay>();
-        //OnInit();
-        //UIManager.Instance.OpenUI<MainMenu>();
     }    
 
 
@@ -102,8 +83,6 @@ public class LevelManager : Singleton<LevelManager>
         //OnReset();
         ////LoadLevel();
         OnReset();
-        LoadLevel(levelIndex - 1);
-        OnInit();
         UIManager.Instance.OpenUI<GamePlay>();
     }
 }

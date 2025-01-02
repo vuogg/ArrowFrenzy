@@ -5,6 +5,8 @@ using UnityEngine;
 public class UICanvas : MonoBehaviour
 {
     //public bool IsAvoidBackKey = false;
+    public Animator UIAnim;
+    public string currentAnimName;
     public bool IsDestroyOnClose = false;
 
     protected RectTransform m_RectTransform;
@@ -80,4 +82,13 @@ public class UICanvas : MonoBehaviour
         Invoke(nameof(CloseDirectly), delayTime);
     }
 
+    public void ChangeAnim(string animName)
+    {
+        if (currentAnimName != animName)
+        {
+            UIAnim.ResetTrigger(animName);
+            currentAnimName = animName;
+            UIAnim.SetTrigger(currentAnimName);
+        }
+    }
 }

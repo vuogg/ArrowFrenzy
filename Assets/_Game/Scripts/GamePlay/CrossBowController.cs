@@ -12,16 +12,17 @@ public class CrossBowController : MonoBehaviour
     private string currentAnimName;
     public Arrow arrowPrefab;
     public Transform shootPoint;
-    bool isDragging;
+    public bool isDragging;
     Vector2 startTouch;
 
     public int maxBounces = 3;
+    public bool isControl;
     public bool hasShot;
     //public float arrowSpeed = 10f;
 
     void Update()
     {
-        if (hasShot)
+        if (hasShot || UIManager.Instance.IsOpened<Settings>())
         {
             lineRenderer.enabled = false;
             return;
@@ -56,6 +57,7 @@ public class CrossBowController : MonoBehaviour
 
     public void OnInit()
     {
+        isDragging = false;
         hasShot = false;
         lineRenderer.enabled = false;
         crossbowCollider.enabled = true;
@@ -132,10 +134,15 @@ public class CrossBowController : MonoBehaviour
         lineRenderer.enabled = false;
         crossbowCollider.enabled = false;
     }
-
-    private void ChangeAnim(string animName)
+    
+    public void ResetState()
     {
-        if(currentAnimName != animName)
+        isDragging = false;
+    }
+
+    protected void ChangeAnim(string animName)
+    {
+        if (currentAnimName != animName)
         {
             anim.ResetTrigger(animName);
             currentAnimName = animName;

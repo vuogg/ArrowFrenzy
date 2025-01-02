@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class GamePlay : UICanvas
 {
+    public LevelText levelText;
+
+    private void Update()
+    {
+        levelText.LevelGamePlay(LevelManager.Instance.levelIndex);
+    }
+
     public void SettingButton()
     {
         LevelManager.Instance.OnPause();

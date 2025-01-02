@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Target : MonoBehaviour
+public class Target : AnimationsController
 {
     [SerializeField] Rigidbody[] ragdollRigidbodies;
     //[SerializeField] private CapsuleCollider capsuleCollider;
     //[SerializeField] private Rigidbody rb;
-    [SerializeField] private Animator anim;
+    //[SerializeField] private Animator anim;
     [SerializeField] private int hp = 5;
     [SerializeField] private float force = 20f;
     [SerializeField] private HealthText health;
 
     //private Vector3 lastHitDirection;
     public Level levelTargets;
-    private string currentAnimName;
+    //private string currentAnimName;
     bool isHit = false;
     bool isDead = false;
 
@@ -167,15 +167,15 @@ public class Target : MonoBehaviour
         }
     }
 
-    private void ChangeAnim(string animName)
-    {
-        if(anim == null) return;
+    //private void ChangeAnim(string animName)
+    //{
+    //    if(anim == null) return;
 
-        if (currentAnimName != animName)
-        {
-            anim.ResetTrigger(animName);
-            currentAnimName = animName;
-            anim.SetTrigger(currentAnimName);
-        }
-    }
+    //    if (currentAnimName != animName)
+    //    {
+    //        anim.ResetTrigger(animName);
+    //        currentAnimName = animName;
+    //        anim.SetTrigger(currentAnimName);
+    //    }
+    //}
 }

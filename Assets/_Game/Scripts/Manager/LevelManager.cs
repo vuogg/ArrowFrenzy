@@ -5,7 +5,7 @@ using UnityEngine.Rendering.VirtualTexturing;
 
 public class LevelManager : Singleton<LevelManager>
 {
-    [SerializeField] private int levelIndex;
+    public int levelIndex;
     public Level[] levelPrefabs;
     public CrossBowController crossBowController;
     public Level currentLevel;
@@ -23,6 +23,7 @@ public class LevelManager : Singleton<LevelManager>
         {
             crossBowController.transform.SetPositionAndRotation(currentLevel.crossbowPosition.position, currentLevel.crossbowPosition.rotation);
         }
+
     }
 
     public void LoadLevel(int level)
@@ -40,10 +41,11 @@ public class LevelManager : Singleton<LevelManager>
 
         else if(level >= levelPrefabs.Length)
         {
-            levelIndex = 0;
-            currentLevel = Instantiate(levelPrefabs[0]);//todo
-        }    
-
+            levelIndex = 1;
+            //currentLevel = Instantiate(levelPrefabs[0]);
+            UIManager.Instance.CloseAll();
+            UIManager.Instance.OpenUI<MainMenu>().ChangeAnim("fadeIn");
+        }
     }
 
     public void OnStartGame()

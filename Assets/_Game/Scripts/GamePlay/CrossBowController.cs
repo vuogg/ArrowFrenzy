@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrossBowController : MonoBehaviour
+public class CrossBowController : AnimationsController
 {
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private Collider crossbowCollider;
-    [SerializeField] private Animator anim;
+    //[SerializeField] private Animator anim;
     
     public Transform crossbowTransform;
-    private string currentAnimName;
+    //private string currentAnimName;
     public Arrow arrowPrefab;
     public Transform shootPoint;
     public bool isDragging;
@@ -140,13 +140,13 @@ public class CrossBowController : MonoBehaviour
         isDragging = false;
     }
 
-    protected void ChangeAnim(string animName)
-    {
-        if (currentAnimName != animName)
-        {
-            anim.ResetTrigger(animName);
-            currentAnimName = animName;
-            anim.SetTrigger(currentAnimName);
-        }
-    }
+    //protected void ChangeAnim(string animName)
+    //{
+    //    if (currentAnimName != animName)
+    //    {
+    //        anim.ResetTrigger(animName);
+    //        currentAnimName = animName;
+    //        anim.SetTrigger(currentAnimName);
+    //    }
+    //}
 }

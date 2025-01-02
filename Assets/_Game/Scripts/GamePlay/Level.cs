@@ -72,7 +72,7 @@ public class Level : MonoBehaviour
         {
             Debug.Log("You Win!");
             GameManager.Instance.ChangeState(GameState.Pause);
-            UIManager.Instance.OpenUI<Win>();
+            UIManager.Instance.OpenUI<Win>().ChangeAnim("slideFromRight");
             UIManager.Instance.CloseUI<GamePlay>();
         }
     }
@@ -83,7 +83,7 @@ public class Level : MonoBehaviour
         {
             Debug.Log("You Lose!");
             GameManager.Instance.ChangeState(GameState.Pause);
-            UIManager.Instance.OpenUI<Lose>();
+            UIManager.Instance.OpenUI<Lose>().ChangeAnim("slideFromLeft");
             UIManager.Instance.CloseUI<GamePlay>();
         }
     }

@@ -7,7 +7,7 @@ public class Settings : UICanvas
     public override void Open()
     {
         base.Open();
-        StartCoroutine(MyCouroutine());
+        StartCoroutine(WaitForSlideCouroutine());
     }
 
     public override void Close(float delayTime)
@@ -33,7 +33,7 @@ public class Settings : UICanvas
         Time.timeScale = 1;
     }
 
-    public IEnumerator MyCouroutine()
+    public IEnumerator WaitForSlideCouroutine()
     {
         yield return new WaitForSeconds(0.5f);
         Time.timeScale = 0;

@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Level : MonoBehaviour
 {
-    [SerializeField] private List<Target> activeTargets = new List<Target>();
+    [SerializeField] private List<Target> activeTargets = new();
     [SerializeField] private int activeArrows = 0;
 
     public Transform crossbowPosition;
@@ -18,7 +19,7 @@ public class Level : MonoBehaviour
         foreach (var target in targets)
         {
             RegisterTarget(target);
-            target.OnInit(); // Gọi OnInit của từng target để chúng sẵn sàng
+            target.OnInit();
         }
     }
 
@@ -74,6 +75,7 @@ public class Level : MonoBehaviour
             GameManager.Instance.ChangeState(GameState.Pause);
             UIManager.Instance.OpenUI<Win>().ChangeAnim("slideFromRight");
             UIManager.Instance.CloseUI<GamePlay>();
+            StartCoroutine(ClearArrowsCouroutine());
         }
     }
 
@@ -82,9 +84,20 @@ public class Level : MonoBehaviour
         if (activeArrows <= 0 && activeTargets.Count > 0)
         {
             Debug.Log("You Lose!");
+            Target[] targets = GetComponentsInChildren<Target>();
+            foreach (var target in targets)
+            {
+                target.ChangeAnim("isWin");
+            }
             GameManager.Instance.ChangeState(GameState.Pause);
             UIManager.Instance.OpenUI<Lose>().ChangeAnim("slideFromLeft");
             UIManager.Instance.CloseUI<GamePlay>();
         }
+    }
+
+    public IEnumerator ClearArrowsCouroutine()
+    {
+        yield return new WaitForSeconds(3f);
+        SimplePool.CollectAll();
     }
 }

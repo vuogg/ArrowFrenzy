@@ -6,10 +6,8 @@ public class CrossBowController : AnimationsController
 {
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private Collider crossbowCollider;
-    //[SerializeField] private Animator anim;
     
     public Transform crossbowTransform;
-    //private string currentAnimName;
     public Arrow arrowPrefab;
     public Transform shootPoint;
     public bool isDragging;
@@ -18,7 +16,6 @@ public class CrossBowController : AnimationsController
     public int maxBounces = 3;
     public bool isControl;
     public bool hasShot;
-    //public float arrowSpeed = 10f;
 
     void Update()
     {
@@ -45,11 +42,17 @@ public class CrossBowController : AnimationsController
                 hasShot = true;
             }
 
+            //if (isDragging)
+            //{
+            //    Vector2 currentTouch = Input.mousePosition;
+            //    float deltaTouch = currentTouch.x - startTouch.x;
+            //    RotateBow(deltaTouch);
+            //    DrawAimLine();
+            //}
+
             if (isDragging)
             {
-                Vector2 currentTouch = Input.mousePosition;
-                float deltaTouch = currentTouch.x - startTouch.x;
-                RotateBow(deltaTouch);
+                RotateBow();
                 DrawAimLine();
             }
         }
@@ -99,21 +102,46 @@ public class CrossBowController : AnimationsController
         }
     }
 
-    void RotateBow(float deltaTouch)
+    //void RotateBow()
+    //{
+    //    //lay vi tri input
+    //    Vector3 mouseScreenPosition = Input.mousePosition;
+
+    //    //chuyen vi tri input sang camera world
+    //    Ray ray = Camera.main.ScreenPointToRay(mouseScreenPosition);
+    //    if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity))
+    //    {
+    //        //tinh huong tu no den vi tri input
+    //        Vector3 targetDirection = (hitInfo.point - crossbowTransform.position).normalized;
+
+    //        //tinh goc quay
+    //        Quaternion targetRotation = Quaternion.LookRotation(new Vector3(targetDirection.x, 0, targetDirection.z));
+
+    //        //no quay cham va muot
+    //        float smoothSpeed = 5f;
+    //        crossbowTransform.rotation = Quaternion.Slerp(crossbowTransform.rotation, targetRotation, smoothSpeed * Time.deltaTime);
+    //    }
+    //}
+
+    void RotateBow()
     {
-        //gioi han goc xoay
-        float rotationAngle = Mathf.Clamp(deltaTouch, -360, 360);
+        //lay vi tri input
+        Vector3 mouseScreenPosition = Input.mousePosition;
 
-        //interpolating bang lerpangle
-        float targetRotationAngle = rotationAngle;
-        float smoothSpeed = 5f;
+        //chuyen vi tri input sang camera world
+        Ray ray = Camera.main.ScreenPointToRay(mouseScreenPosition);
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity))
+        {
+            //tinh huong tu input den vi tri cua no
+            Vector3 targetDirection = (crossbowTransform.position - hitInfo.point).normalized;
 
-        //lam muot goc quay
-        float currentRotation = crossbowTransform.eulerAngles.y;
-        float newRotation = Mathf.LerpAngle(currentRotation, targetRotationAngle, smoothSpeed * Time.deltaTime);
+            //tinh goc quay nguoc
+            Quaternion targetRotation = Quaternion.LookRotation(new Vector3(targetDirection.x, 0, targetDirection.z));
 
-        //Cap nhat goc quay cua no
-        crossbowTransform.rotation = Quaternion.Euler(0, newRotation, 0);
+            //no quay cham va muot
+            float smoothSpeed = 5f;
+            crossbowTransform.rotation = Quaternion.Slerp(crossbowTransform.rotation, targetRotation, smoothSpeed * Time.deltaTime);
+        }
     }
 
     void ShootArrow()
@@ -139,14 +167,4 @@ public class CrossBowController : AnimationsController
     {
         isDragging = false;
     }
-
-    //protected void ChangeAnim(string animName)
-    //{
-    //    if (currentAnimName != animName)
-    //    {
-    //        anim.ResetTrigger(animName);
-    //        currentAnimName = animName;
-    //        anim.SetTrigger(currentAnimName);
-    //    }
-    //}
 }

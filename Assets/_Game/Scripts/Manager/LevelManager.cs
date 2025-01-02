@@ -5,9 +5,12 @@ using UnityEngine.Rendering.VirtualTexturing;
 
 public class LevelManager : Singleton<LevelManager>
 {
+    [SerializeField] private CrossBowController crossBowPrefab;
+
+    private CrossBowController crossBowInstance;
     public int levelIndex;
     public Level[] levelPrefabs;
-    public CrossBowController crossBowController;
+    //public CrossBowController crossBowController;
     public Level currentLevel;
 
     private void Awake()
@@ -18,10 +21,18 @@ public class LevelManager : Singleton<LevelManager>
 
     public void OnInit()
     {
-        crossBowController.OnInit();
+        if(crossBowInstance == null)
+        {
+            crossBowInstance = Instantiate(crossBowPrefab);
+        }
+
+        crossBowInstance.OnInit();
+        //crossBowController.OnInit();
+
         if (currentLevel != null && currentLevel.crossbowPosition != null)
         {
-            crossBowController.transform.SetPositionAndRotation(currentLevel.crossbowPosition.position, currentLevel.crossbowPosition.rotation);
+            //crossBowController.transform.SetPositionAndRotation(currentLevel.crossbowPosition.position, currentLevel.crossbowPosition.rotation);
+            crossBowInstance.transform.SetPositionAndRotation(currentLevel.crossbowPosition.position, currentLevel.crossbowPosition.rotation);
         }
 
     }
@@ -62,7 +73,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void OnContinue()
     {
-        crossBowController.ResetState();
+        crossBowInstance.ResetState();
         GameManager.Instance.ChangeState(GameState.GamePlay);
     }
 

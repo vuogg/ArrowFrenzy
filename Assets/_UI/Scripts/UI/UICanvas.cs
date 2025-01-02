@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UICanvas : MonoBehaviour
+public class UICanvas : AnimationsController
 {
     //public bool IsAvoidBackKey = false;
-    public Animator UIAnim;
-    public string currentAnimName;
     public bool IsDestroyOnClose = false;
 
     protected RectTransform m_RectTransform;
@@ -80,15 +78,5 @@ public class UICanvas : MonoBehaviour
     public virtual void Close(float delayTime)
     {
         Invoke(nameof(CloseDirectly), delayTime);
-    }
-
-    public void ChangeAnim(string animName)
-    {
-        if (currentAnimName != animName)
-        {
-            UIAnim.ResetTrigger(animName);
-            currentAnimName = animName;
-            UIAnim.SetTrigger(currentAnimName);
-        }
     }
 }

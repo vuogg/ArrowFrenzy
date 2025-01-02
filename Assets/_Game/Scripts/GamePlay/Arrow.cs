@@ -69,7 +69,7 @@ public class Arrow : GameUnit
         currentReflects = 0;
         rb.isKinematic = false;
         col.enabled = true;
-        trailRenderer.enabled = true;
+        //trailRenderer.enabled = true;
         level = null;
     }    
 
@@ -153,7 +153,14 @@ public class Arrow : GameUnit
     {
         rb.isKinematic = true;
         //col.enabled = false;
-        trailRenderer.enabled = false;
+        //if (trailRenderer != null)
+        //{
+        //    trailRenderer.enabled = false;
+        //}
+        //else
+        //{
+        //    Debug.LogError("TrailRenderer is null when trying to disable it.");
+        //}
 
         //Debug.LogError(hit.collider.name);
         transform.SetParent(hit.collider.transform);

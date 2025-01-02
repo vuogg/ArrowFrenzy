@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class AnimationsController : MonoBehaviour
 {
-    public Animator anim;
-    public string currentAnimName;
+    [SerializeField] internal Animator anim;
+    [SerializeField] internal string currentAnimName;
 
-    public void ChangeAnim(string animName)
+    internal void ChangeAnim(string animName)
     {
-        if (anim == null) return;
-
         if (currentAnimName != animName)
         {
             anim.ResetTrigger(animName);

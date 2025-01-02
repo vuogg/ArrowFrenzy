@@ -591,7 +591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea1d7f29c50e2043823bbf881d5da0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIAnim: {fileID: 5581531598467862245}
+  anim: {fileID: 5581531598467862245}
   currentAnimName: 
   IsDestroyOnClose: 0
 --- !u!1 &6021929875712359342

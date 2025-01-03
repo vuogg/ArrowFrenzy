@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Buff : MonoBehaviour
+public class Buff : AnimationsController
 {
     [SerializeField] private BuffText buffText;
     [SerializeField] private float cooldownDuration = 5f;

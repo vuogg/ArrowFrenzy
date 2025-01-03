@@ -96,12 +96,17 @@ public class Arrow : GameUnit
             buff.ArrowMultiply(velocity.normalized);
             if (hit.collider.CompareTag("GreenBuff"))
             {
+                buff.ChangeAnim("shaking");
                 Reflect(hit);
             }
             else if (hit.collider.CompareTag("YellowBuff"))
             {
                 Destroy(hit.collider.gameObject);
             }
+            else
+            {
+                buff.ChangeAnim("none");
+            }    
         }
     }
     

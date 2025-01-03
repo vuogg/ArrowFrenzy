@@ -15,5 +15,12 @@ public class AnimationsController : MonoBehaviour
             currentAnimName = animName;
             anim.SetTrigger(currentAnimName);
         }
+
+        if (currentAnimName == animName)
+        {
+            anim.ResetTrigger(animName);
+            currentAnimName = animName;
+            anim.SetTrigger(currentAnimName);
+        }
     }
 }

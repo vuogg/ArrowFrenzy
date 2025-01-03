@@ -15,9 +15,19 @@ public class LevelManager : Singleton<LevelManager>
 
     private void Awake()
     {
-        //fix me
-        //levelIndex = PlayerPrefs.GetInt("Level", 1);
-        UIManager.Instance.OpenUI<MainMenu>().ChangeAnim(Constants.ANIM_FADEIN);
+        levelIndex = PlayerPrefs.GetInt(Constants.TAG_LEVEL, 1);
+
+        if (levelIndex > 10)
+        {
+            levelIndex = 1;
+            PlayerPrefs.SetInt(Constants.TAG_LEVEL, levelIndex);
+            PlayerPrefs.Save(); // Lưu thay đổi vào PlayerPrefs
+            UIManager.Instance.OpenUI<MainMenu>().ChangeAnim(Constants.ANIM_FADEIN);
+        }
+        else
+        {
+            UIManager.Instance.OpenUI<MainMenu>().ChangeAnim(Constants.ANIM_FADEIN);
+        }
     }
 
     public void OnInit()
@@ -56,7 +66,7 @@ public class LevelManager : Singleton<LevelManager>
         else if(level >= levelPrefabs.Length)
         {
             //levelIndex = 1;
-            PlayerPrefs.SetInt("Level", 1);
+            //PlayerPrefs.SetInt("Level", 1);
             //currentLevel = Instantiate(levelPrefabs[0]);
             UIManager.Instance.CloseAll();
             UIManager.Instance.OpenUI<MainMenu>().ChangeAnim(Constants.ANIM_FADEIN);
@@ -90,16 +100,26 @@ public class LevelManager : Singleton<LevelManager>
     {
         OnReset();
         UIManager.Instance.OpenUI<GamePlay>();
-    }    
-
+    }
 
     public void OnNextLevel()
     {
         levelIndex++;
-        PlayerPrefs.SetInt("Level", levelIndex);
-        //OnReset();
-        ////LoadLevel();
-        
+
+        if (levelIndex > 10)
+        {
+            levelIndex = 1;
+            PlayerPrefs.SetInt(Constants.TAG_LEVEL, levelIndex);
+            PlayerPrefs.Save();
+            UIManager.Instance.CloseAll();
+            UIManager.Instance.OpenUI<MainMenu>().ChangeAnim(Constants.ANIM_FADEIN);
+        }
+        else
+        {
+            PlayerPrefs.SetInt(Constants.TAG_LEVEL, levelIndex);
+            PlayerPrefs.Save();
+        }
+
         OnReset();
         UIManager.Instance.OpenUI<GamePlay>();
     }

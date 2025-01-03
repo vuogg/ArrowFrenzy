@@ -46,7 +46,6 @@ public class Target : AnimationsController
 
         if (hp <= 0)
         {
-            anim.enabled = false;
             EnableRagdoll();
             ApplyRagdollForce();
             isDead = true;
@@ -79,6 +78,10 @@ public class Target : AnimationsController
 
     public void EnableRagdoll()
     {
+        for (int i = 0; i < ragdollRigidbodies.Length; i++)
+        {
+            ragdollRigidbodies[i].isKinematic = true;
+        }    
         anim.enabled = false;
         SetRagdollState(true);
     }

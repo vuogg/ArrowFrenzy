@@ -980,11 +980,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 060d1aaeb77ba5c478e79dfc7e8e5e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ragdollRigidbodies: []
   anim: {fileID: 8021882155421240590}
+  currentAnimName: 
+  ragdollRigidbodies: []
   hp: 25
   force: 30
   health: {fileID: 8932586722184315983}
+  levelTargets: {fileID: 0}
 --- !u!1 &2625153014798101084
 GameObject:
   m_ObjectHideFlags: 0
@@ -2975,7 +2977,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7808307517150413781}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 179b83d00d7f3394bacb6b1ba3701b89, type: 3}
+  m_Avatar: {fileID: 0}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0

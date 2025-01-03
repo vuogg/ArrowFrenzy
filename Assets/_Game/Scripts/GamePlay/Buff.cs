@@ -5,16 +5,19 @@ using UnityEngine;
 public class Buff : AnimationsController
 {
     [SerializeField] private BuffText buffText;
-    [SerializeField] private float cooldownDuration = 5f;
-    [SerializeField] private int arrowMultiplier = 3;
-    [SerializeField] private Arrow arrowPrefab;
-    [SerializeField] private float spreadAngle = 90f;
     [SerializeField] private Transform arrowSpawnPoint;
+    [SerializeField] private Arrow arrowPrefab;
+    [SerializeField] private int arrowMultiplier = 3;
+    [SerializeField] private float cooldownDuration = 5f;
+    [SerializeField] private float spreadAngle = 90f;
     [SerializeField] private float arrowSpeed = 10f;
+
+    private Collider cachedCollider;
     private bool isCooldown = false;
 
     private void Start()
     {
+        cachedCollider = Cache.GetCachedComponent<Collider>(gameObject);
         buffText.OnInit(arrowMultiplier);
     }
 
@@ -24,7 +27,8 @@ public class Buff : AnimationsController
 
         StartCoroutine(IEArrowMultiply(direction));
     }
-    
+
+
     private IEnumerator IEArrowMultiply(Vector3 direction)
     {
         //logic nhan mui ten
@@ -38,7 +42,7 @@ public class Buff : AnimationsController
 
             Arrow arrow = SimplePool.Spawn<Arrow>(PoolType.Arrow, arrowSpawnPoint.position, rotation);
 
-            Arrow arrowScript = arrow.GetComponent <Arrow>();
+            Arrow arrowScript = Cache.GetCachedComponent<Arrow>(arrow.gameObject);
             if (arrowScript != null)
             {
                 Vector3 shootDirection = rotation * Vector3.forward;
@@ -50,5 +54,9 @@ public class Buff : AnimationsController
         isCooldown = true;
         yield return new WaitForSeconds(cooldownDuration);
         isCooldown = false;
+    }
+    private void OnDestroy()
+    {
+        Cache.ClearCache(gameObject);
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.VirtualTexturing;
@@ -8,15 +8,16 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField] private CrossBowController crossBowPrefab;
 
     private CrossBowController crossBowInstance;
-    public int levelIndex;
+
     public Level[] levelPrefabs;
-    //public CrossBowController crossBowController;
     public Level currentLevel;
+    public int levelIndex;
 
     private void Awake()
     {
-        levelIndex = PlayerPrefs.GetInt("Level", levelIndex);
-        UIManager.Instance.OpenUI<MainMenu>().ChangeAnim("fadeIn");
+        //fix me
+        //levelIndex = PlayerPrefs.GetInt("Level", 1);
+        UIManager.Instance.OpenUI<MainMenu>().ChangeAnim(Constants.ANIM_FADEIN);
     }
 
     public void OnInit()
@@ -44,6 +45,8 @@ public class LevelManager : Singleton<LevelManager>
             Destroy(currentLevel.gameObject);
         }
 
+        //level = Mathf.Clamp(level, 0, levelIndex);
+
         if (level < levelPrefabs.Length)
         {
             currentLevel = Instantiate(levelPrefabs[level]);
@@ -52,10 +55,11 @@ public class LevelManager : Singleton<LevelManager>
 
         else if(level >= levelPrefabs.Length)
         {
-            levelIndex = 1;
+            //levelIndex = 1;
+            PlayerPrefs.SetInt("Level", 1);
             //currentLevel = Instantiate(levelPrefabs[0]);
             UIManager.Instance.CloseAll();
-            UIManager.Instance.OpenUI<MainMenu>().ChangeAnim("fadeIn");
+            UIManager.Instance.OpenUI<MainMenu>().ChangeAnim(Constants.ANIM_FADEIN);
         }
     }
 
@@ -95,6 +99,7 @@ public class LevelManager : Singleton<LevelManager>
         PlayerPrefs.SetInt("Level", levelIndex);
         //OnReset();
         ////LoadLevel();
+        
         OnReset();
         UIManager.Instance.OpenUI<GamePlay>();
     }

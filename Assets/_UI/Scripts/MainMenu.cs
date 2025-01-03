@@ -15,7 +15,7 @@ public class MainMenu : UICanvas
     {
         LevelManager.Instance.OnStartGame();
         UIManager.Instance.OpenUI<GamePlay>();
-        ChangeAnim("fadeOut");
+        ChangeAnim(Constants.ANIM_FADEOUT);
         Close(0.5f);
     }
 }

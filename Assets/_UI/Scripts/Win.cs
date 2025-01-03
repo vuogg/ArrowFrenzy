@@ -8,7 +8,7 @@ public class Win : UICanvas
     {
         LevelManager.Instance.OnRetry();
         LevelManager.Instance.OnStartGame();
-        UIManager.Instance.OpenUI<Win>().ChangeAnim("slideRight");
+        UIManager.Instance.OpenUI<Win>().ChangeAnim(Constants.ANIM_SLIDERIGHT);
         Close(0.5f);
     }
 
@@ -16,7 +16,7 @@ public class Win : UICanvas
     {
         LevelManager.Instance.OnNextLevel();
         LevelManager.Instance.OnStartGame();
-        UIManager.Instance.OpenUI<Win>().ChangeAnim("slideLeft");
+        UIManager.Instance.OpenUI<Win>().ChangeAnim(Constants.ANIM_SLIDELEFT);
         Close(0.5f);
     }
 }

@@ -14,8 +14,7 @@ public class GamePlay : UICanvas
     public void SettingButton()
     {
         LevelManager.Instance.OnPause();
-        //GameManager.Instance.ChangeState(GameState.Pause);
-        UIManager.Instance.OpenUI<Settings>().ChangeAnim("slideDown");
+        UIManager.Instance.OpenUI<Settings>().ChangeAnim(Constants.ANIM_SLIDEDOWN);
         Close(0.5f);
     }
 }

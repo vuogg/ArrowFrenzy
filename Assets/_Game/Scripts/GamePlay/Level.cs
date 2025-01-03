@@ -5,8 +5,10 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Level : MonoBehaviour
 {
-    [SerializeField] private List<Target> activeTargets = new();
+    //[SerializeField] private List<Target> activeTargets = new();
     [SerializeField] private int activeArrows = 0;
+
+    private List<Target> activeTargets = new();
 
     public Transform crossbowPosition;
 
@@ -15,11 +17,19 @@ public class Level : MonoBehaviour
         activeArrows = 0;
         activeTargets.Clear();
 
-        Target[] targets = GetComponentsInChildren<Target>();
-        foreach (var target in targets)
+        if (activeTargets.Count == 0)
         {
-            RegisterTarget(target);
-            target.OnInit();
+            Target[] targets = GetComponentsInChildren<Target>();
+            for (int i = 0; i < targets.Length; i++)
+            {
+                activeTargets.Add(Cache.GetTarget(targets[i].gameObject));
+            }
+        }
+
+        for (int i = 0; i < activeTargets.Count; i++)
+        {
+            RegisterTarget(activeTargets[i]);
+            activeTargets[i].OnInit();
         }
     }
 
@@ -61,19 +71,10 @@ public class Level : MonoBehaviour
 
     private void CheckWinCondition()
     {
-        //if (activeTargets.Count == 0)
-        //{
-        //    Debug.Log("You Win!");
-        //    GameManager.Instance.ChangeState(GameState.Pause);
-        //    UIManager.Instance.OpenUI<Win>();
-        //    UIManager.Instance.CloseUI<GamePlay>();
-        //    LevelManager.Instance.OnReset();
-        //}
         if (activeTargets.Count == 0)
         {
-            Debug.Log("You Win!");
             GameManager.Instance.ChangeState(GameState.Pause);
-            UIManager.Instance.OpenUI<Win>().ChangeAnim("slideFromRight");
+            UIManager.Instance.OpenUI<Win>().ChangeAnim(Constants.ANIM_SLIDEFROMRIGHT);
             UIManager.Instance.CloseUI<GamePlay>();
             StartCoroutine(ClearArrowsCouroutine());
         }
@@ -83,14 +84,12 @@ public class Level : MonoBehaviour
     {
         if (activeArrows <= 0 && activeTargets.Count > 0)
         {
-            Debug.Log("You Lose!");
-            Target[] targets = GetComponentsInChildren<Target>();
-            foreach (var target in targets)
+            for (int i = 0; i < activeTargets.Count; i++)
             {
-                target.ChangeAnim("isWin");
+                activeTargets[i].ChangeAnim(Constants.ANIM_WIN);
             }
             GameManager.Instance.ChangeState(GameState.Pause);
-            UIManager.Instance.OpenUI<Lose>().ChangeAnim("slideFromLeft");
+            UIManager.Instance.OpenUI<Lose>().ChangeAnim(Constants.ANIM_SLIDEFROMLEFT);
             UIManager.Instance.CloseUI<GamePlay>();
         }
     }

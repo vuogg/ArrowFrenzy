@@ -14,4 +14,9 @@ public class OnHit : MonoBehaviour
             //target.DecreaseHealthText(damage);
         }
     }
+
+    private void OnDestroy()
+    {
+        Cache.ClearCache(GetComponent<Collider>());
+    }
 }

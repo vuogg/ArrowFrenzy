@@ -686,7 +686,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crossBowPrefab: {fileID: 7162326169964132421, guid: 4a36f3a1e6f34494f8059f8dd3df1777, type: 3}
-  levelIndex: 1
   levelPrefabs:
   - {fileID: 2155924926288894314, guid: 890bab1af9d6af54ca2669381da8c0cd, type: 3}
   - {fileID: 1232410618985973884, guid: de062e2528df9ae4088f30f8aea166e5, type: 3}
@@ -699,6 +698,7 @@ MonoBehaviour:
   - {fileID: 3717895760483427090, guid: dc1c2399c7f9c8440830f264aec124b7, type: 3}
   - {fileID: 4708450164202287290, guid: 9a6b6508dfbb89b4f9dd2ac62aa72a96, type: 3}
   currentLevel: {fileID: 0}
+  levelIndex: 1
 --- !u!1 &1952269632
 GameObject:
   m_ObjectHideFlags: 0

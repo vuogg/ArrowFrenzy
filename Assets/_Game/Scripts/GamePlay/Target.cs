@@ -6,98 +6,43 @@ using UnityEngine;
 public class Target : AnimationsController
 {
     [SerializeField] Rigidbody[] ragdollRigidbodies;
-    //[SerializeField] private CapsuleCollider capsuleCollider;
-    //[SerializeField] private Rigidbody rb;
-    //[SerializeField] private Animator anim;
     [SerializeField] private int hp = 5;
     [SerializeField] private float force = 20f;
     [SerializeField] private HealthText health;
 
-    //private Vector3 lastHitDirection;
     public Level levelTargets;
-    //private string currentAnimName;
     bool isHit = false;
     bool isDead = false;
 
     private void Start()
     {
         OnInit();
-    }
-
-    //private void OnInit()
-    //{
-    //    health.OnInit(hp);
-    //    //if(capsuleCollider == null)
-    //    //{
-    //    //    capsuleCollider = GetComponent<CapsuleCollider>();
-    //    //}
-    //    ChangeAnim("isDance");
-
-    //    //Lay danh sach rb tu cac xuong
-    //    ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
-
-    //    //tat ragdoll
-    //    SetRagdollState(false);
-    //}    
+    } 
 
     public void OnInit()
     {
         health.OnInit(hp);
-        ChangeAnim("isDance");
+        ChangeAnim(Constants.ANIM_DANCE);
 
         ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
         SetRagdollState(false);
 
         isHit = false ;
-        isDead = false ;    
-        // dang ky target voi level
-        //Level levelTargets = FindObjectOfType<Level>();
-
-
-        //GameObject levelObject = GameObject.FindGameObjectWithTag("Level");
-        //if (levelObject != null)
-        //{
-        //    Debug.Log("level khoi tao != null");
-        //    levelTargets = levelObject.GetComponent<Level>();
-        //    if (levelTargets != null)
-        //    {
-        //        Debug.Log("target khoi tao != null");
-        //        levelTargets.RegisterTarget(this);
-        //    }
-        //    else
-        //    {
-        //        Debug.Log("target khoi tao == null");
-        //    }
-        //}
-        //else
-        //{
-        //    Debug.Log("level khoi tao == null");
-        //}
+        isDead = false ;
     }
 
     public void TakeDamage(int damage)
     {
-        if(isDead) return;
-
-        //lastHitDirection = hitDirection;
+        if (isDead) return;
 
         if (!isHit)
         {
-            ChangeAnim("isIdle");
+            ChangeAnim(Constants.ANIM_IDLE);
             isHit = true;
         }
-        // target bat ragdoll khi het hp
+
         hp -= damage;
         DecreaseHealthText(damage);
-
-        //if (hp <= 0)
-        //{
-        //    anim.enabled = false;
-        //    EnableRagdoll();
-        //    ApplyRagdollForce();
-        //    //ApplyRagdollForce(lastHitDirection);
-        //    isDead = true;
-        //}
 
         if (hp <= 0)
         {
@@ -106,25 +51,14 @@ public class Target : AnimationsController
             ApplyRagdollForce();
             isDead = true;
 
-            //huy dang ky target khoi level
-            GameObject levelObject = GameObject.FindGameObjectWithTag("Level");
+            GameObject levelObject = GameObject.FindGameObjectWithTag(Constants.TAG_LEVEL);
             if (levelObject != null)
             {
-                Debug.Log("level bi huy != null");
-                levelTargets = levelObject.GetComponent<Level>();
+                levelTargets = Cache.GetLevel(levelObject);
                 if (levelTargets != null)
                 {
-                    Debug.Log("target bi huy != null");
                     levelTargets.UnregisterTarget(this);
                 }
-                else
-                {
-                    Debug.Log("target bi huy == null");
-                }
-            }
-            else
-            {
-                Debug.Log("level bi huy == null");
             }
         }
     }
@@ -147,16 +81,6 @@ public class Target : AnimationsController
     {
         anim.enabled = false;
         SetRagdollState(true);
-
-        //if (capsuleCollider != null)
-        //{
-        //    capsuleCollider.enabled = false;
-        //}
-
-        //if (rb != null)
-        //{
-        //    rb.isKinematic = true;
-        //}    
     }
 
     private void ApplyRagdollForce()
@@ -167,15 +91,12 @@ public class Target : AnimationsController
         }
     }
 
-    //private void ChangeAnim(string animName)
-    //{
-    //    if(anim == null) return;
-
-    //    if (currentAnimName != animName)
-    //    {
-    //        anim.ResetTrigger(animName);
-    //        currentAnimName = animName;
-    //        anim.SetTrigger(currentAnimName);
-    //    }
-    //}
+    private void OnDestroy()
+    {
+        GameObject levelObject = GameObject.FindGameObjectWithTag(Constants.TAG_LEVEL);
+        if (levelObject != null)
+        {
+            Cache.ClearCache(levelObject);
+        }
+    }
 }

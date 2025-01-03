@@ -17,7 +17,7 @@ public class Settings : UICanvas
 
     public void ContinueButton()
     {
-        ChangeAnim("slideUp");
+        ChangeAnim(Constants.ANIM_SLIDEUP);
         Close(0.5f);
         UIManager.Instance.OpenUI<GamePlay>();
         LevelManager.Instance.OnContinue();
@@ -26,7 +26,7 @@ public class Settings : UICanvas
 
     public void RetryButton()
     {
-        ChangeAnim("slideUp");
+        ChangeAnim(Constants.ANIM_SLIDEUP);
         Close(0.5f);
         LevelManager.Instance.OnRetry();
         LevelManager.Instance.OnStartGame();

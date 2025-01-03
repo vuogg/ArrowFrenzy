@@ -8,16 +8,16 @@ public class Lose : UICanvas
     {
         LevelManager.Instance.OnRetry();
         LevelManager.Instance.OnStartGame();
-        UIManager.Instance.OpenUI<Lose>().ChangeAnim("slideRight");
+        UIManager.Instance.OpenUI<Lose>().ChangeAnim(Constants.ANIM_SLIDERIGHT);
         Close(0.5f);
     }
 
     public void LeaveButton()
     {
         GameManager.Instance.ChangeState(GameState.MainMenu);
-        UIManager.Instance.OpenUI<Lose>().ChangeAnim("slideLeft");
+        UIManager.Instance.OpenUI<Lose>().ChangeAnim(Constants.ANIM_SLIDELEFT);
         Close(0.5f);
         //UIManager.Instance.CloseAll();
-        UIManager.Instance.OpenUI<MainMenu>().ChangeAnim("fadeIn");
+        UIManager.Instance.OpenUI<MainMenu>().ChangeAnim(Constants.ANIM_FADEIN);
     }
 }

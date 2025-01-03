@@ -6,16 +6,15 @@ public class CrossBowController : AnimationsController
 {
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private Collider crossbowCollider;
-    
+
     public Transform crossbowTransform;
     public Arrow arrowPrefab;
     public Transform shootPoint;
-    public bool isDragging;
-    Vector2 startTouch;
-
     public int maxBounces = 3;
+
     public bool isControl;
     public bool hasShot;
+    public bool isDragging;
 
     void Update()
     {
@@ -29,14 +28,14 @@ public class CrossBowController : AnimationsController
         {
             if (Input.GetMouseButtonDown(0))
             {
-                ChangeAnim("hold");
-                startTouch = Input.mousePosition;
+                ChangeAnim(Constants.ANIM_HOLD);
+                //startTouch = Input.mousePosition;
                 lineRenderer.enabled = true;
                 isDragging = true;
             }
             else if (Input.GetMouseButtonUp(0) && isDragging)
             {
-                ChangeAnim("shoot");
+                ChangeAnim(Constants.ANIM_SHOOT);
                 isDragging = false;
                 ShootArrow();
                 hasShot = true;
@@ -83,7 +82,7 @@ public class CrossBowController : AnimationsController
                 lineRenderer.positionCount += 1;
                 lineRenderer.SetPosition(lineRenderer.positionCount - 1, hit.point);
 
-                if (hit.collider.CompareTag("Wall"))
+                if (hit.collider.CompareTag(Constants.TAG_WALL))
                 {
                     aimDirection = Vector3.Reflect(aimDirection, hit.normal);
                     currentPosition = hit.point;
@@ -152,10 +151,12 @@ public class CrossBowController : AnimationsController
         Arrow arrow = SimplePool.Spawn<Arrow>(PoolType.Arrow, shootPoint.position, shootPoint.rotation);
 
         //Truyen van toc cho mui ten
-        Arrow arrowScript = arrow.GetComponent<Arrow>();
+        //Arrow arrowScript = arrow.GetComponent<Arrow>();
+        Arrow arrowScript = Cache.GetArrow(arrow.gameObject);
         if (arrowScript != null)
         {
-            arrowScript.Launch(shootPoint.forward * arrow.GetComponent<Arrow>().arrowSpeed);
+            arrowScript.Launch(shootPoint.forward * arrowPrefab.arrowSpeed);
+            //arrowScript.Launch(shootPoint.forward * arrow.GetComponent<Arrow>().arrowSpeed);
         }
 
         hasShot = true;

@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68d8fa547691adf4d8dfb4a431c20e3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIAnim: {fileID: 0}
+  anim: {fileID: 0}
   currentAnimName: 
   IsDestroyOnClose: 0
   levelText: {fileID: 4632360658097732346}
@@ -229,7 +229,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -110, y: -46.2}
+  m_AnchoredPosition: {x: -110, y: -46.19995}
   m_SizeDelta: {x: 220, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1069045180010413579
@@ -437,10 +437,10 @@ RectTransform:
   - {fileID: 5052716241512065089}
   m_Father: {fileID: 716348209366216417}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 1284, y: 2778}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2144602172140834195
 CanvasRenderer:

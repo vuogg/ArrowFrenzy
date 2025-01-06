@@ -26,15 +26,26 @@ public class Arrow : GameUnit
     {
         if (!isStuck)
         {
-            float stepDistance = velocity.magnitude * Time.deltaTime;
-            Vector3 startPosition = TF.position;
+            //float stepDistance = velocity.magnitude * Time.deltaTime;
 
-            for (float i = 0; i < stepDistance; i += 0.1f)
+            float stepDistanceSquared = velocity.sqrMagnitude * Time.deltaTime * Time.deltaTime;
+            float stepDistance = Mathf.Sqrt(stepDistanceSquared);
+
+            RaycastHit hit;
+            if (Physics.Raycast(TF.position, velocity.normalized, out hit, stepDistance, reflectLayers | targetLayers | buffLayers))
             {
-                Vector3 checkPosition = startPosition + velocity.normalized * i;
-                CheckCollision(checkPosition, reflectLayers, Reflect);
-                CheckCollision(checkPosition, targetLayers, HitTarget);
-                CheckCollision(checkPosition, buffLayers, HandleBuff);
+                if ((reflectLayers.value & (1 << hit.collider.gameObject.layer)) != 0)
+                {
+                    Reflect(hit);
+                }
+                else if ((targetLayers.value & (1 << hit.collider.gameObject.layer)) != 0)
+                {
+                    HitTarget(hit);
+                }
+                else if ((buffLayers.value & (1 << hit.collider.gameObject.layer)) != 0)
+                {
+                    HandleBuff(hit);
+                }
             }
 
             TF.position += velocity * Time.deltaTime;
@@ -71,16 +82,16 @@ public class Arrow : GameUnit
         velocity = initialVelocity;
     }
 
-    private void CheckCollision(Vector3 position, LayerMask layer, System.Action<RaycastHit> collisionAction)
-    {
-        RaycastHit hit;
-        //dieu chinh khoang cach raycast
-        float checkDistance = velocity.magnitude * Time.deltaTime + 0.01f;
-        if (Physics.Raycast(position, velocity.normalized, out hit, checkDistance, layer))
-        {
-            collisionAction(hit);
-        }
-    }
+    //private void CheckCollision(Vector3 position, LayerMask layer, System.Action<RaycastHit> collisionAction)
+    //{
+    //    RaycastHit hit;
+    //    //dieu chinh khoang cach raycast
+    //    float checkDistance = velocity.magnitude * Time.deltaTime + 0.01f;
+    //    if (Physics.Raycast(position, velocity.normalized, out hit, checkDistance, layer))
+    //    {
+    //        collisionAction(hit);
+    //    }
+    //}
 
     private void HandleBuff(RaycastHit hit)
     {
@@ -139,9 +150,10 @@ public class Arrow : GameUnit
     private void StickToTarget(RaycastHit hit)
     {
         rb.isKinematic = true;
+        rb.detectCollisions = false;
         TF.SetParent(hit.collider.transform);
 
-        float depth = 0.4f;
+        float depth = 0.35f;
         Vector3 hitPosition = hit.point - TF.forward * depth;
 
         

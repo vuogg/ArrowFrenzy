@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Target : AnimationsController
 {
-    [SerializeField] Rigidbody[] ragdollRigidbodies;
+    [SerializeField] public Rigidbody[] ragdollRigidbodies;
     [SerializeField] private int hp = 5;
     [SerializeField] private float force = 20f;
     [SerializeField] private HealthText health;

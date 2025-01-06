@@ -8,7 +8,7 @@ public class Level : MonoBehaviour
     //[SerializeField] private List<Target> activeTargets = new();
     [SerializeField] private int activeArrows = 0;
 
-    private List<Target> activeTargets = new();
+    [SerializeField] private List<Target> activeTargets = new();
 
     public Transform crossbowPosition;
 
@@ -62,7 +62,7 @@ public class Level : MonoBehaviour
 
     public void UnregisterArrow(Arrow arrow)
     {
-        if (arrow != null)
+        if (arrow != null && activeArrows > 0)
         {
             activeArrows--;
         }

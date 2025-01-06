@@ -1559,8 +1559,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 179b83d00d7f3394bacb6b1ba3701b89, type: 3}
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: bfbb9ec1a2045054386990b57cca39d6, type: 2}
+  - {fileID: 2100000, guid: 96eb3b9f8054816408d67005a8700ef0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2833,9 +2833,8 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 2f5946bc0ff1a9b46ba9efdf67af6033, type: 2}
-  - {fileID: -876546973899608171, guid: 179b83d00d7f3394bacb6b1ba3701b89, type: 3}
+  - {fileID: 2100000, guid: bfbb9ec1a2045054386990b57cca39d6, type: 2}
   - {fileID: 2100000, guid: 5991de00db988fe489cdf30dbbb7bcad, type: 2}
-  - {fileID: 2100000, guid: 2f5946bc0ff1a9b46ba9efdf67af6033, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3030,8 +3029,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5200766810486047634}
-  - component: {fileID: 6391205136503423409}
-  - component: {fileID: 674654395926801715}
   - component: {fileID: 8636943502204517593}
   m_Layer: 7
   m_Name: Targetx12
@@ -3057,56 +3054,6 @@ Transform:
   - {fileID: 7801582627917253968}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &6391205136503423409
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6444504591445670010}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &674654395926801715
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6444504591445670010}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 317396da8b4f6964a9fa170ff6530e0a, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &8636943502204517593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3119,11 +3066,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 060d1aaeb77ba5c478e79dfc7e8e5e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ragdollRigidbodies: []
   anim: {fileID: 4170026112429725020}
+  currentAnimName: 
+  ragdollRigidbodies: []
   hp: 12
   force: 30
   health: {fileID: 6337247304515196404}
+  levelTargets: {fileID: 0}
 --- !u!1 &6506301210072207042
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,37 +18,75 @@ public class Arrow : GameUnit
     public LayerMask reflectLayers;
     public LayerMask buffLayers;
     public LayerMask targetLayers;
-    public float arrowSpeed = 10f;
+    public float arrowSpeed = 8f;
 
     bool isStuck = false;
 
-    private void Update()
+    //private void FixedUpdate()
+    //{
+    //    if (!isStuck)
+    //    {
+    //        float stepDistance = velocity.magnitude * Time.deltaTime + 0.1f;
+
+    //        //float stepDistanceSquared = velocity.sqrMagnitude * Time.deltaTime * Time.deltaTime;
+    //        //float stepDistance = Mathf.Sqrt(stepDistanceSquared);
+
+    //        RaycastHit hit;
+    //        Debug.DrawRay(TF.position, velocity.normalized * stepDistance, Color.red, 0.1f);
+    //        if (Physics.Raycast(TF.position, velocity.normalized, out hit, stepDistance, reflectLayers | targetLayers | buffLayers))
+    //        {
+    //            if ((reflectLayers.value & (1 << hit.collider.gameObject.layer)) != 0)
+    //            {
+    //                Reflect(hit);
+    //            }
+    //            else if ((targetLayers.value & (1 << hit.collider.gameObject.layer)) != 0)
+    //            {
+    //                HitTarget(hit);
+    //            }
+    //            else if ((buffLayers.value & (1 << hit.collider.gameObject.layer)) != 0)
+    //            {
+    //                HandleBuff(hit);
+    //            }
+    //        }
+
+    //        TF.position += velocity * Time.deltaTime;
+
+    //        if (velocity != Vector3.zero)
+    //        {
+    //            TF.rotation = Quaternion.LookRotation(velocity);
+    //        }
+
+    //        CheckOutOfBounds();
+    //    }
+    //}
+
+    private void FixedUpdate()
     {
         if (!isStuck)
         {
-            //float stepDistance = velocity.magnitude * Time.deltaTime;
-
-            float stepDistanceSquared = velocity.sqrMagnitude * Time.deltaTime * Time.deltaTime;
-            float stepDistance = Mathf.Sqrt(stepDistanceSquared);
+            Vector3 nextPoint = TF.position + velocity.normalized * arrowSpeed * Time.deltaTime;
 
             RaycastHit hit;
-            if (Physics.Raycast(TF.position, velocity.normalized, out hit, stepDistance, reflectLayers | targetLayers | buffLayers))
+            if (Physics.Raycast(TF.position, velocity.normalized, out hit, arrowSpeed * Time.deltaTime + 0.1f, reflectLayers | targetLayers | buffLayers))
             {
                 if ((reflectLayers.value & (1 << hit.collider.gameObject.layer)) != 0)
                 {
                     Reflect(hit);
+                    return;
                 }
                 else if ((targetLayers.value & (1 << hit.collider.gameObject.layer)) != 0)
                 {
                     HitTarget(hit);
+                    return;
                 }
                 else if ((buffLayers.value & (1 << hit.collider.gameObject.layer)) != 0)
                 {
                     HandleBuff(hit);
+                    return;
                 }
             }
 
-            TF.position += velocity * Time.deltaTime;
+            TF.position = nextPoint;
 
             if (velocity != Vector3.zero)
             {
@@ -82,17 +120,6 @@ public class Arrow : GameUnit
         velocity = initialVelocity;
     }
 
-    //private void CheckCollision(Vector3 position, LayerMask layer, System.Action<RaycastHit> collisionAction)
-    //{
-    //    RaycastHit hit;
-    //    //dieu chinh khoang cach raycast
-    //    float checkDistance = velocity.magnitude * Time.deltaTime + 0.01f;
-    //    if (Physics.Raycast(position, velocity.normalized, out hit, checkDistance, layer))
-    //    {
-    //        collisionAction(hit);
-    //    }
-    //}
-
     private void HandleBuff(RaycastHit hit)
     {
         Buff buff = Cache.GetBuff(hit.collider);
@@ -107,10 +134,6 @@ public class Arrow : GameUnit
             else if (hit.collider.CompareTag(Constants.TAG_YELLOWBUFF))
             {
                 Destroy(hit.collider.gameObject);
-            }
-            else
-            {
-                buff.ChangeAnim(Constants.ANIM_NONE);
             }
         }
     }
@@ -140,7 +163,7 @@ public class Arrow : GameUnit
         TF.position = hit.point + normal * 0.01f;
 
         currentReflects++;
-        if(currentReflects >= maxReflects)
+        if (currentReflects >= maxReflects)
         {
             SimplePool.Despawn(this);
             UnregisterArrow();
@@ -153,7 +176,7 @@ public class Arrow : GameUnit
         rb.detectCollisions = false;
         TF.SetParent(hit.collider.transform);
 
-        float depth = 0.35f;
+        float depth = 0.5f;
         Vector3 hitPosition = hit.point - TF.forward * depth;
 
         

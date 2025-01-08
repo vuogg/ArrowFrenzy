@@ -8,6 +8,12 @@ public class GameManager : Singleton<GameManager>
 {
     private GameState gameState;
 
+    private void Awake()
+    {
+        Application.targetFrameRate = 60;
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+    }
+
     private void Start()
     {
         ChangeState(GameState.MainMenu);

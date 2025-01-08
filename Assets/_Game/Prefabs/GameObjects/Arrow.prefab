@@ -126,7 +126,7 @@ MonoBehaviour:
   col: {fileID: 4797812272251637675}
   rb: {fileID: 1271852427416838883}
   trailRenderer: {fileID: 9026186416653436034}
-  maxReflects: 100
+  maxReflects: 120
   currentReflects: 0
   level: {fileID: 0}
   reflectLayers:
@@ -138,7 +138,7 @@ MonoBehaviour:
   targetLayers:
     serializedVersion: 2
     m_Bits: 128
-  arrowSpeed: 10
+  arrowSpeed: 9
 --- !u!54 &1271852427416838883
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -458,9 +458,9 @@ MonoBehaviour:
   anim: {fileID: 1945221588114216782}
   currentAnimName: 
   buffText: {fileID: 8594997969689481590}
-  cooldownDuration: 5
-  arrowMultiplier: 3
-  arrowPrefab: {fileID: 7523215244210309044, guid: 9cf91ed6a1c1f3542abba4523b859489, type: 3}
-  spreadAngle: 60
   arrowSpawnPoint: {fileID: 8011524385922748721}
-  arrowSpeed: 10
+  arrowPrefab: {fileID: 7523215244210309044, guid: 9cf91ed6a1c1f3542abba4523b859489, type: 3}
+  arrowMultiplier: 3
+  cooldownDuration: 4
+  spreadAngle: 60
+  arrowSpeed: 9

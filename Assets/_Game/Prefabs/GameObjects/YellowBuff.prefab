@@ -401,10 +401,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60b389642c92ad743ba8364c83a405b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  currentAnimName: 
   buffText: {fileID: 1449992022229098652}
-  cooldownDuration: 5
-  arrowMultiplier: 3
-  arrowPrefab: {fileID: 7523215244210309044, guid: 9cf91ed6a1c1f3542abba4523b859489, type: 3}
-  spreadAngle: 60
   arrowSpawnPoint: {fileID: 581406717888417824}
-  arrowSpeed: 10
+  arrowPrefab: {fileID: 7523215244210309044, guid: 9cf91ed6a1c1f3542abba4523b859489, type: 3}
+  arrowMultiplier: 3
+  cooldownDuration: 5
+  spreadAngle: 60
+  arrowSpeed: 9

@@ -6,8 +6,8 @@ using UnityEngine;
 public class Target : AnimationsController
 {
     [SerializeField] public Rigidbody[] ragdollRigidbodies;
-    [SerializeField] private int hp = 5;
-    [SerializeField] private float force = 20f;
+    [SerializeField] private int hp = 10;
+    [SerializeField] private float force = 30f;
     [SerializeField] private HealthText health;
 
     public Level levelTargets;
@@ -48,6 +48,7 @@ public class Target : AnimationsController
         {
             EnableRagdoll();
             ApplyRagdollForce();
+            StartCoroutine(IEKinematicCouroutine());
             isDead = true;
 
             GameObject levelObject = GameObject.FindGameObjectWithTag(Constants.TAG_LEVEL);
@@ -73,6 +74,7 @@ public class Target : AnimationsController
         {
             //neu state = true, bat ragdoll
             rb.isKinematic = !state;
+            rb.interpolation = RigidbodyInterpolation.Interpolate;
         }
     }
 
@@ -97,5 +99,14 @@ public class Target : AnimationsController
         {
             Cache.ClearCache(levelObject);
         }
+    }
+
+    public IEnumerator IEKinematicCouroutine()
+    {
+        yield return new WaitForSeconds(2f);
+        foreach(Rigidbody rb in ragdollRigidbodies)
+        {
+            rb.isKinematic = true;
+        }    
     }
 }

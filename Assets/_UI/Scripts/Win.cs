@@ -15,8 +15,12 @@ public class Win : UICanvas
     public void NextLevelButton()
     {
         LevelManager.Instance.OnNextLevel();
-        LevelManager.Instance.OnStartGame();
-        UIManager.Instance.OpenUI<Win>().ChangeAnim(Constants.ANIM_SLIDELEFT);
+        if(LevelManager.Instance.levelIndex <= 10)
+        {
+            LevelManager.Instance.OnStartGame();
+            UIManager.Instance.OpenUI<Win>().ChangeAnim(Constants.ANIM_SLIDELEFT);
+        }
+
         Close(0.5f);
     }
 }

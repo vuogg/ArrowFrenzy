@@ -74,6 +74,7 @@ public class Level : MonoBehaviour
         if (activeTargets.Count == 0)
         {
             GameManager.Instance.ChangeState(GameState.Pause);
+            AudioManager.Instance.PlaySound(AudioManager.Instance.win);
             UIManager.Instance.OpenUI<Win>().ChangeAnim(Constants.ANIM_SLIDEFROMRIGHT);
             UIManager.Instance.CloseUI<GamePlay>();
             StartCoroutine(ClearArrowsCouroutine());
@@ -89,6 +90,7 @@ public class Level : MonoBehaviour
                 activeTargets[i].ChangeAnim(Constants.ANIM_WIN);
             }
             GameManager.Instance.ChangeState(GameState.Pause);
+            AudioManager.Instance.PlaySound(AudioManager.Instance.lose);
             UIManager.Instance.OpenUI<Lose>().ChangeAnim(Constants.ANIM_SLIDEFROMLEFT);
             UIManager.Instance.CloseUI<GamePlay>();
         }
@@ -96,7 +98,7 @@ public class Level : MonoBehaviour
 
     public IEnumerator ClearArrowsCouroutine()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(6f);
         SimplePool.CollectAll();
     }
 }

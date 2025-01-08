@@ -20,12 +20,14 @@ public class LevelManager : Singleton<LevelManager>
         {
             levelIndex = 1;
             PlayerPrefs.SetInt(Constants.TAG_LEVEL, levelIndex);
-            PlayerPrefs.Save(); // Lưu thay đổi vào PlayerPrefs
+            PlayerPrefs.Save();
             UIManager.Instance.OpenUI<MainMenu>().ChangeAnim(Constants.ANIM_FADEIN);
+            AudioManager.Instance.PlayMusic(AudioManager.Instance.mainMenu);
         }
         else
         {
             UIManager.Instance.OpenUI<MainMenu>().ChangeAnim(Constants.ANIM_FADEIN);
+            AudioManager.Instance.PlayMusic(AudioManager.Instance.mainMenu);
         }
     }
 
@@ -62,20 +64,22 @@ public class LevelManager : Singleton<LevelManager>
             currentLevel.OnInit();
         }
 
-        else if(level >= levelPrefabs.Length)
-        {
-            //levelIndex = 1;
-            //PlayerPrefs.SetInt("Level", 1);
-            //currentLevel = Instantiate(levelPrefabs[0]);
-            UIManager.Instance.CloseAll();
-            UIManager.Instance.OpenUI<MainMenu>().ChangeAnim(Constants.ANIM_FADEIN);
-        }
+        //else if(level >= levelPrefabs.Length)
+        //{
+        //    //levelIndex = 1;
+        //    //PlayerPrefs.SetInt("Level", 1);
+        //    //currentLevel = Instantiate(levelPrefabs[0]);
+        //    UIManager.Instance.CloseAll();
+        //    UIManager.Instance.OpenUI<MainMenu>().ChangeAnim(Constants.ANIM_FADEIN);
+        //    AudioManager.Instance.PlayMusic(AudioManager.Instance.mainMenu);
+        //}
     }
 
     public void OnStartGame()
     {
         LoadLevel(levelIndex - 1);
         GameManager.Instance.ChangeState(GameState.GamePlay);
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.gamePlay);
         OnInit();
     }
 
@@ -105,22 +109,28 @@ public class LevelManager : Singleton<LevelManager>
     {
         levelIndex++;
 
-        if (levelIndex > 10)
+        if(levelIndex <= 10)
+        {
+            PlayerPrefs.SetInt(Constants.TAG_LEVEL, levelIndex);
+            PlayerPrefs.Save();
+
+            UIManager.Instance.OpenUI<GamePlay>();
+            AudioManager.Instance.PlayMusic(AudioManager.Instance.gamePlay);
+
+        }
+
+        else if (levelIndex > 10)
         {
             levelIndex = 1;
             PlayerPrefs.SetInt(Constants.TAG_LEVEL, levelIndex);
             PlayerPrefs.Save();
+
             UIManager.Instance.CloseAll();
             UIManager.Instance.OpenUI<MainMenu>().ChangeAnim(Constants.ANIM_FADEIN);
-        }
-        else
-        {
-            PlayerPrefs.SetInt(Constants.TAG_LEVEL, levelIndex);
-            PlayerPrefs.Save();
+            AudioManager.Instance.PlayMusic(AudioManager.Instance.mainMenu);
         }
 
         OnReset();
-        UIManager.Instance.OpenUI<GamePlay>();
     }
 }
 

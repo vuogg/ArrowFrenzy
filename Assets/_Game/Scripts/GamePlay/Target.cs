@@ -7,7 +7,7 @@ public class Target : AnimationsController
 {
     [SerializeField] public Rigidbody[] ragdollRigidbodies;
     [SerializeField] private int hp = 10;
-    [SerializeField] private float force = 30f;
+    [SerializeField] private float force = 40f;
     [SerializeField] private HealthText health;
 
     public Level levelTargets;

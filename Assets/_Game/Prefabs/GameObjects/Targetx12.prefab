@@ -3070,7 +3070,7 @@ MonoBehaviour:
   currentAnimName: 
   ragdollRigidbodies: []
   hp: 12
-  force: 30
+  force: 40
   health: {fileID: 6337247304515196404}
   levelTargets: {fileID: 0}
 --- !u!1 &6506301210072207042

@@ -19,5 +19,6 @@ public class Lose : UICanvas
         Close(0.5f);
         //UIManager.Instance.CloseAll();
         UIManager.Instance.OpenUI<MainMenu>().ChangeAnim(Constants.ANIM_FADEIN);
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.mainMenu);
     }
 }

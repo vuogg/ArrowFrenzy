@@ -77,7 +77,7 @@ public class CrossBowController : AnimationsController
         for (int i = 0; i < maxBounces; i++)
         {
             RaycastHit hit;
-            if (Physics.Raycast(currentPosition, aimDirection, out hit, 10f))
+            if (Physics.Raycast(currentPosition, aimDirection, out hit, 12f))
             {
                 lineRenderer.positionCount += 1;
                 lineRenderer.SetPosition(lineRenderer.positionCount - 1, hit.point);
@@ -95,7 +95,7 @@ public class CrossBowController : AnimationsController
             else
             {
                 lineRenderer.positionCount += 1;
-                lineRenderer.SetPosition(lineRenderer.positionCount - 1, currentPosition + aimDirection * 10f);
+                lineRenderer.SetPosition(lineRenderer.positionCount - 1, currentPosition + aimDirection * 12f);
                 break;
             }
         }

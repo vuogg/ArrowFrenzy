@@ -98,7 +98,7 @@ public class Level : MonoBehaviour
 
     public IEnumerator ClearArrowsCouroutine()
     {
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(4f);
         SimplePool.CollectAll();
     }
 }

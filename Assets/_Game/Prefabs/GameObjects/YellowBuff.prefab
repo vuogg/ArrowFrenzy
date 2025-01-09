@@ -409,4 +409,4 @@ MonoBehaviour:
   arrowMultiplier: 3
   cooldownDuration: 5
   spreadAngle: 60
-  arrowSpeed: 9
+  arrowSpeed: 10

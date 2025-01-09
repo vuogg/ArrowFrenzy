@@ -89,6 +89,7 @@ public class LevelManager : Singleton<LevelManager>
     {
         crossBowInstance.ResetState();
         GameManager.Instance.ChangeState(GameState.GamePlay);
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.gamePlay);
     }
 
     public void OnReset()

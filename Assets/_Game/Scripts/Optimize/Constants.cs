@@ -21,6 +21,7 @@ public class Constants
     public const string ANIM_SLIDERIGHT = "slideRight";
     public const string ANIM_SLIDEFROMLEFT = "slideFromLeft";
     public const string ANIM_SLIDEFROMRIGHT = "slideFromRight";
+    public const string ANIM_TARGETSHAKING = "targetShaking";
 
     public const string TAG_WALL = "Wall";
     public const string TAG_TARGET = "Target";

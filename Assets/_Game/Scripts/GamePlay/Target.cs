@@ -42,6 +42,7 @@ public class Target : AnimationsController
         }
 
         hp -= damage;
+        ChangeAnim(Constants.ANIM_TARGETSHAKING);
         DecreaseHealthText(damage);
 
         if (hp <= 0)

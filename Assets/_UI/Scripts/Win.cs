@@ -15,10 +15,14 @@ public class Win : UICanvas
     public void NextLevelButton()
     {
         LevelManager.Instance.OnNextLevel();
-        if(LevelManager.Instance.levelIndex <= 10)
+        if(LevelManager.Instance.levelIndex >= 2 && LevelManager.Instance.levelIndex <= 10)
         {
             LevelManager.Instance.OnStartGame();
             UIManager.Instance.OpenUI<Win>().ChangeAnim(Constants.ANIM_SLIDELEFT);
+        }
+        else
+        {
+            AudioManager.Instance.PlayMusic(AudioManager.Instance.mainMenu);
         }
 
         Close(0.5f);

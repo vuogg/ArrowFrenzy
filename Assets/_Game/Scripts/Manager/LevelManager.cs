@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LevelManager : Singleton<LevelManager>
 {
@@ -33,7 +31,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void OnInit()
     {
-        if(crossBowInstance == null)
+        if (crossBowInstance == null)
         {
             crossBowInstance = Instantiate(crossBowPrefab);
         }
@@ -51,7 +49,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void LoadLevel(int level)
     {
-        if(currentLevel != null)
+        if (currentLevel != null)
         {
             Destroy(currentLevel.gameObject);
         }
@@ -64,14 +62,13 @@ public class LevelManager : Singleton<LevelManager>
             currentLevel.OnInit();
         }
 
-        //else if(level >= levelPrefabs.Length)
+        //else if (level >= levelPrefabs.Length)
         //{
         //    //levelIndex = 1;
         //    //PlayerPrefs.SetInt("Level", 1);
         //    //currentLevel = Instantiate(levelPrefabs[0]);
         //    UIManager.Instance.CloseAll();
         //    UIManager.Instance.OpenUI<MainMenu>().ChangeAnim(Constants.ANIM_FADEIN);
-        //    AudioManager.Instance.PlayMusic(AudioManager.Instance.mainMenu);
         //}
     }
 
@@ -109,7 +106,7 @@ public class LevelManager : Singleton<LevelManager>
     {
         levelIndex++;
 
-        if(levelIndex <= 10)
+        if (levelIndex <= 10)
         {
             PlayerPrefs.SetInt(Constants.TAG_LEVEL, levelIndex);
             PlayerPrefs.Save();
@@ -127,7 +124,6 @@ public class LevelManager : Singleton<LevelManager>
 
             UIManager.Instance.CloseAll();
             UIManager.Instance.OpenUI<MainMenu>().ChangeAnim(Constants.ANIM_FADEIN);
-            AudioManager.Instance.PlayMusic(AudioManager.Instance.mainMenu);
         }
 
         OnReset();

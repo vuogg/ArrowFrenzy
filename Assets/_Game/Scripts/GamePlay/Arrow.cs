@@ -140,6 +140,8 @@ public class Arrow : GameUnit
 
     private void HitTarget(RaycastHit hit)
     {
+        ParticlePool.Play(ParticleType.Blood, hit.point, Quaternion.LookRotation(hit.normal));
+
         OnHit targetScript = Cache.GetOnHit(hit.collider);
         if (targetScript != null)
         {

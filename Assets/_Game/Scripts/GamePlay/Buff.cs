@@ -8,16 +8,14 @@ public class Buff : AnimationsController
     [SerializeField] private Transform arrowSpawnPoint;
     [SerializeField] private Arrow arrowPrefab;
     [SerializeField] private int arrowMultiplier = 3;
-    [SerializeField] private float cooldownDuration = 3f;
+    [SerializeField] private float cooldownDuration = 2f;
     [SerializeField] private float spreadAngle = 90f;
     [SerializeField] private float arrowSpeed = 8f;
 
-    private Collider cachedCollider;
     private bool isCooldown = false;
 
     private void Start()
     {
-        cachedCollider = Cache.GetCachedComponent<Collider>(gameObject);
         buffText.OnInit(arrowMultiplier);
     }
 
@@ -27,7 +25,6 @@ public class Buff : AnimationsController
 
         StartCoroutine(IEArrowMultiply(direction));
     }
-
 
     private IEnumerator IEArrowMultiply(Vector3 direction)
     {

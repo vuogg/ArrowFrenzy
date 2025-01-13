@@ -12,7 +12,7 @@ public class Arrow : GameUnit
 
     private Vector3 velocity;
 
-    public int maxReflects = 20;
+    public int maxReflects = 10;
     public int currentReflects;
     public Level level;
     public LayerMask reflectLayers;
@@ -21,44 +21,6 @@ public class Arrow : GameUnit
     public float arrowSpeed = 8f;
 
     bool isStuck = false;
-
-    //private void FixedUpdate()
-    //{
-    //    if (!isStuck)
-    //    {
-    //        float stepDistance = velocity.magnitude * Time.deltaTime + 0.1f;
-
-    //        //float stepDistanceSquared = velocity.sqrMagnitude * Time.deltaTime * Time.deltaTime;
-    //        //float stepDistance = Mathf.Sqrt(stepDistanceSquared);
-
-    //        RaycastHit hit;
-    //        Debug.DrawRay(TF.position, velocity.normalized * stepDistance, Color.red, 0.1f);
-    //        if (Physics.Raycast(TF.position, velocity.normalized, out hit, stepDistance, reflectLayers | targetLayers | buffLayers))
-    //        {
-    //            if ((reflectLayers.value & (1 << hit.collider.gameObject.layer)) != 0)
-    //            {
-    //                Reflect(hit);
-    //            }
-    //            else if ((targetLayers.value & (1 << hit.collider.gameObject.layer)) != 0)
-    //            {
-    //                HitTarget(hit);
-    //            }
-    //            else if ((buffLayers.value & (1 << hit.collider.gameObject.layer)) != 0)
-    //            {
-    //                HandleBuff(hit);
-    //            }
-    //        }
-
-    //        TF.position += velocity * Time.deltaTime;
-
-    //        if (velocity != Vector3.zero)
-    //        {
-    //            TF.rotation = Quaternion.LookRotation(velocity);
-    //        }
-
-    //        CheckOutOfBounds();
-    //    }
-    //}
 
     private void FixedUpdate()
     {

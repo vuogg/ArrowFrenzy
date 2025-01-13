@@ -41,14 +41,6 @@ public class CrossBowController : AnimationsController
                 hasShot = true;
             }
 
-            //if (isDragging)
-            //{
-            //    Vector2 currentTouch = Input.mousePosition;
-            //    float deltaTouch = currentTouch.x - startTouch.x;
-            //    RotateBow(deltaTouch);
-            //    DrawAimLine();
-            //}
-
             if (isDragging)
             {
                 RotateBow();
@@ -79,7 +71,7 @@ public class CrossBowController : AnimationsController
             RaycastHit hit;
             if (Physics.Raycast(currentPosition, aimDirection, out hit, 12f))
             {
-                lineRenderer.positionCount += 1;
+                lineRenderer.positionCount++;
                 lineRenderer.SetPosition(lineRenderer.positionCount - 1, hit.point);
 
                 if (hit.collider.CompareTag(Constants.TAG_WALL))
@@ -94,33 +86,12 @@ public class CrossBowController : AnimationsController
             }
             else
             {
-                lineRenderer.positionCount += 1;
+                lineRenderer.positionCount++;
                 lineRenderer.SetPosition(lineRenderer.positionCount - 1, currentPosition + aimDirection * 12f);
                 break;
             }
         }
     }
-
-    //void RotateBow()
-    //{
-    //    //lay vi tri input
-    //    Vector3 mouseScreenPosition = Input.mousePosition;
-
-    //    //chuyen vi tri input sang camera world
-    //    Ray ray = Camera.main.ScreenPointToRay(mouseScreenPosition);
-    //    if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity))
-    //    {
-    //        //tinh huong tu no den vi tri input
-    //        Vector3 targetDirection = (hitInfo.point - crossbowTransform.position).normalized;
-
-    //        //tinh goc quay
-    //        Quaternion targetRotation = Quaternion.LookRotation(new Vector3(targetDirection.x, 0, targetDirection.z));
-
-    //        //no quay cham va muot
-    //        float smoothSpeed = 5f;
-    //        crossbowTransform.rotation = Quaternion.Slerp(crossbowTransform.rotation, targetRotation, smoothSpeed * Time.deltaTime);
-    //    }
-    //}
 
     void RotateBow()
     {
@@ -138,8 +109,15 @@ public class CrossBowController : AnimationsController
             Quaternion targetRotation = Quaternion.LookRotation(new Vector3(targetDirection.x, 0, targetDirection.z));
 
             //no quay cham va muot
-            float smoothSpeed = 5f;
-            crossbowTransform.rotation = Quaternion.Slerp(crossbowTransform.rotation, targetRotation, smoothSpeed * Time.deltaTime);
+            //float smoothSpeed = 3f;
+            //crossbowTransform.rotation = Quaternion.Slerp(crossbowTransform.rotation, targetRotation, smoothSpeed * Time.deltaTime);
+
+            float angle = Quaternion.Angle(crossbowTransform.rotation, targetRotation);
+            if (angle > 5f)
+            {
+                float smoothSpeed = 3f;
+                crossbowTransform.rotation = Quaternion.Slerp(crossbowTransform.rotation, targetRotation, smoothSpeed * Time.deltaTime);
+            }
         }
     }
 

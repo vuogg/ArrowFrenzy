@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class Target : AnimationsController
 {
-    [SerializeField] public Rigidbody[] ragdollRigidbodies;
+    [SerializeField] private Rigidbody[] ragdollRigidbodies;
     [SerializeField] private int hp = 10;
     [SerializeField] private float force = 40f;
     [SerializeField] private HealthText health;
 
+    private bool isHit = false;
+    private bool isDead = false;
     public Level levelTargets;
-    bool isHit = false;
-    bool isDead = false;
 
     private void Start()
     {
@@ -24,7 +24,6 @@ public class Target : AnimationsController
         health.OnInit(hp);
         ChangeAnim(Constants.ANIM_DANCE);
 
-        ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
         SetRagdollState(false);
 
         isHit = false ;
@@ -52,15 +51,18 @@ public class Target : AnimationsController
             StartCoroutine(IEKinematicCouroutine());
             isDead = true;
 
-            GameObject levelObject = GameObject.FindGameObjectWithTag(Constants.TAG_LEVEL);
-            if (levelObject != null)
-            {
-                levelTargets = Cache.GetLevel(levelObject);
-                if (levelTargets != null)
-                {
-                    levelTargets.UnregisterTarget(this);
-                }
-            }
+            //TODO
+            //GameObject levelObject = GameObject.FindGameObjectWithTag(Constants.TAG_LEVEL);
+            //if (levelObject != null)
+            //{
+            //    levelTargets = Cache.GetLevel(levelObject);
+            //    if (levelTargets != null)
+            //    {
+            //        levelTargets.UnregisterTarget(this);
+            //    }
+            //}
+
+            LevelManager.Instance.currentLevel.UnregisterTarget(this);
         }
     }
 
@@ -95,6 +97,7 @@ public class Target : AnimationsController
 
     private void OnDestroy()
     {
+        //TODO
         GameObject levelObject = GameObject.FindGameObjectWithTag(Constants.TAG_LEVEL);
         if (levelObject != null)
         {

@@ -18,7 +18,7 @@ public class Arrow : GameUnit
     public LayerMask reflectLayers;
     public LayerMask buffLayers;
     public LayerMask targetLayers;
-    public float arrowSpeed = 8f;
+    public float arrowSpeed = 10f;
 
     bool isStuck = false;
 
@@ -26,10 +26,10 @@ public class Arrow : GameUnit
     {
         if (!isStuck)
         {
-            Vector3 nextPoint = TF.position + velocity.normalized * arrowSpeed * Time.deltaTime;
+            Vector3 nextPoint = TF.position + arrowSpeed * Time.fixedDeltaTime * velocity.normalized;
 
             RaycastHit hit;
-            if (Physics.Raycast(TF.position, velocity.normalized, out hit, arrowSpeed * Time.deltaTime + 0.1f, reflectLayers | targetLayers | buffLayers))
+            if (Physics.Raycast(TF.position, velocity.normalized, out hit, arrowSpeed * Time.fixedDeltaTime + 0.1f, reflectLayers | targetLayers | buffLayers))
             {
                 if ((reflectLayers.value & (1 << hit.collider.gameObject.layer)) != 0)
                 {
@@ -151,6 +151,7 @@ public class Arrow : GameUnit
 
     public void RegisterArrow()
     {
+        //TODO:
         GameObject levelObject = GameObject.FindGameObjectWithTag(Constants.TAG_LEVEL);
         if (levelObject != null)
         {
@@ -164,6 +165,7 @@ public class Arrow : GameUnit
 
     public void UnregisterArrow()
     {
+        //TODO:
         GameObject levelObject = GameObject.FindGameObjectWithTag(Constants.TAG_LEVEL);
         if (levelObject != null)
         {

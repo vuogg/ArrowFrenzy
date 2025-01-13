@@ -8,9 +8,8 @@ public class Buff : AnimationsController
     [SerializeField] private Transform arrowSpawnPoint;
     [SerializeField] private Arrow arrowPrefab;
     [SerializeField] private int arrowMultiplier = 3;
-    [SerializeField] private float cooldownDuration = 2f;
+    [SerializeField] private float cooldownDuration = 1.5f;
     [SerializeField] private float spreadAngle = 90f;
-    [SerializeField] private float arrowSpeed = 8f;
 
     private bool isCooldown = false;
 
@@ -39,17 +38,18 @@ public class Buff : AnimationsController
 
             Arrow arrow = SimplePool.Spawn<Arrow>(PoolType.Arrow, arrowSpawnPoint.position, rotation);
 
-            Arrow arrowScript = Cache.GetCachedComponent<Arrow>(arrow.gameObject);
-            if (arrowScript != null)
-            {
+            //Arrow arrow = Cache.GetCachedComponent<Arrow>(arrow.gameObject);
+            //if (arrow != null)
+            //{
                 Vector3 shootDirection = rotation * Vector3.forward;
-                arrowScript.Launch(shootDirection.normalized * arrowSpeed);
-            }
+                arrow.Launch(shootDirection.normalized * arrow.arrowSpeed);
+            //}
         }
 
         //cooldown
         isCooldown = true;
-        yield return new WaitForSeconds(cooldownDuration);
+        //yield return new WaitForSeconds(cooldownDuration);
+        yield return Cache.GetWFS(cooldownDuration);
         isCooldown = false;
     }
     private void OnDestroy()

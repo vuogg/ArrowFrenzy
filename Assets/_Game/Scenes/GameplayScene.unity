@@ -314,7 +314,7 @@ MonoBehaviour:
   Pool:
   - root: {fileID: 116603176}
     prefab: {fileID: 7523215244210309044, guid: 9cf91ed6a1c1f3542abba4523b859489, type: 3}
-    amount: 0
+    amount: 100
     collect: 1
   Particle:
   - root: {fileID: 575577289}

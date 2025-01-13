@@ -130,12 +130,12 @@ public class CrossBowController : AnimationsController
 
         //Truyen van toc cho mui ten
         //Arrow arrowScript = arrow.GetComponent<Arrow>();
-        Arrow arrowScript = Cache.GetArrow(arrow.gameObject);
-        if (arrowScript != null)
-        {
-            arrowScript.Launch(shootPoint.forward * arrowPrefab.arrowSpeed);
+        //Arrow arrowScript = Cache.GetArrow(arrow.gameObject);
+        //if (arrowScript != null)
+        //{
+        arrow.Launch(shootPoint.forward * arrowPrefab.arrowSpeed);
             //arrowScript.Launch(shootPoint.forward * arrow.GetComponent<Arrow>().arrowSpeed);
-        }
+        //}
 
         hasShot = true;
         lineRenderer.enabled = false;

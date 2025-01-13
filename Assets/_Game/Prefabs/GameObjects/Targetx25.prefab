@@ -930,7 +930,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 8021882155421240590}
   currentAnimName: 
-  ragdollRigidbodies: []
+  ragdollRigidbodies:
+  - {fileID: 1505774154609254731}
+  - {fileID: 4707726135546953381}
+  - {fileID: 2711291055799626586}
+  - {fileID: 7066978409503510688}
+  - {fileID: 906302023948533229}
+  - {fileID: 4486056722634581529}
+  - {fileID: 6558691582389733583}
+  - {fileID: 165766730478841412}
+  - {fileID: 234550249703133700}
+  - {fileID: 5623870820424606259}
+  - {fileID: 601611622171944724}
   hp: 25
   force: 40
   health: {fileID: 8932586722184315983}

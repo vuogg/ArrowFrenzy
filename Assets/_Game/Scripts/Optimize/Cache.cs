@@ -12,6 +12,16 @@ public class Cache
     private static Dictionary<GameObject, Target> targets = new();
     private static Dictionary<GameObject, Dictionary<System.Type, Component>> cachedComponents = new();
 
+    private static Dictionary<float, WaitForSeconds > wfs = new();
+
+    public static WaitForSeconds GetWFS(float time)
+    {
+        if (!wfs.ContainsKey(time))
+        {
+            wfs.Add(time, new WaitForSeconds(time));
+        }
+        return wfs[time];
+    }
     public static Buff GetBuff(Collider collider)
     {
         if (!buffs.ContainsKey(collider))

@@ -14,16 +14,16 @@ public class Level : MonoBehaviour
     public void OnInit()
     {
         activeArrows = 0;
-        activeTargets.Clear();
+        //activeTargets.Clear();
 
-        if (activeTargets.Count == 0)
-        {
-            Target[] targets = GetComponentsInChildren<Target>();
-            for (int i = 0; i < targets.Length; i++)
-            {
-                activeTargets.Add(Cache.GetTarget(targets[i].gameObject));
-            }
-        }
+        //if (activeTargets.Count == 0)
+        //{
+        //    Target[] targets = GetComponentsInChildren<Target>();
+        //    for (int i = 0; i < targets.Length; i++)
+        //    {
+        //        activeTargets.Add(Cache.GetTarget(targets[i].gameObject));
+        //    }
+        //}
 
         for (int i = 0; i < activeTargets.Count; i++)
         {

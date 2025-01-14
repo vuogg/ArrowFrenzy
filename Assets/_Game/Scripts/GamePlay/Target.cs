@@ -10,6 +10,7 @@ public class Target : AnimationsController
     [SerializeField] private float force = 40f;
     [SerializeField] private HealthText health;
 
+    private float turnOffRagdollDuration = 2f;
     private bool isHit = false;
     private bool isDead = false;
     public Level levelTargets;
@@ -97,17 +98,18 @@ public class Target : AnimationsController
 
     private void OnDestroy()
     {
-        //TODO
-        GameObject levelObject = GameObject.FindGameObjectWithTag(Constants.TAG_LEVEL);
-        if (levelObject != null)
-        {
-            Cache.ClearCache(levelObject);
-        }
+        //GameObject levelObject = GameObject.FindGameObjectWithTag(Constants.TAG_LEVEL);
+        //if (levelObject != null)
+        //{
+        //    Cache.ClearCache(levelObject);
+        //}
+
+        Cache.ClearCache(gameObject);
     }
 
     public IEnumerator IEKinematicCouroutine()
     {
-        yield return new WaitForSeconds(2f);
+        yield return Cache.GetWFS(turnOffRagdollDuration);
         foreach(Rigidbody rb in ragdollRigidbodies)
         {
             rb.isKinematic = true;

@@ -8,9 +8,9 @@ public class Cache
     private static Dictionary<Collider, Buff> buffs = new();
     private static Dictionary<Collider, OnHit> onHits = new();
     private static Dictionary<GameObject, Level> levels = new();
-    private static Dictionary<GameObject, Arrow> arrows = new();
-    private static Dictionary<GameObject, Target> targets = new();
-    private static Dictionary<GameObject, Dictionary<System.Type, Component>> cachedComponents = new();
+    //private static Dictionary<GameObject, Arrow> arrows = new();
+    //private static Dictionary<GameObject, Target> targets = new();
+    //private static Dictionary<GameObject, Dictionary<System.Type, Component>> cachedComponents = new();
 
     private static Dictionary<float, WaitForSeconds > wfs = new();
 
@@ -40,50 +40,50 @@ public class Cache
         return onHits[collider];
     }
 
-    public static Level GetLevel(GameObject levelObject)
-    {
-        if (!levels.ContainsKey(levelObject))
-        {
-            levels.Add(levelObject, levelObject.GetComponent<Level>());
-        }
-        return levels[levelObject];
-    }
+    //public static Level GetLevel(GameObject levelObject)
+    //{
+    //    if (!levels.ContainsKey(levelObject))
+    //    {
+    //        levels.Add(levelObject, levelObject.GetComponent<Level>());
+    //    }
+    //    return levels[levelObject];
+    //}
 
-    public static Arrow GetArrow(GameObject obj)
-    {
-        if (!arrows.ContainsKey(obj))
-        {
-            arrows.Add(obj, obj.GetComponent<Arrow>());
-        }
-        return arrows[obj];
-    }
+    //public static Arrow GetArrow(GameObject obj)
+    //{
+    //    if (!arrows.ContainsKey(obj))
+    //    {
+    //        arrows.Add(obj, obj.GetComponent<Arrow>());
+    //    }
+    //    return arrows[obj];
+    //}
 
-    public static Target GetTarget(GameObject obj)
-    {
-        if (!targets.ContainsKey(obj))
-        {
-            targets.Add(obj, obj.GetComponent<Target>());
-        }
-        return targets[obj];
-    }
+    //public static Target GetTarget(GameObject obj)
+    //{
+    //    if (!targets.ContainsKey(obj))
+    //    {
+    //        targets.Add(obj, obj.GetComponent<Target>());
+    //    }
+    //    return targets[obj];
+    //}
 
-    public static T GetCachedComponent<T>(GameObject gameObject) where T : Component
-    {
-        if (!cachedComponents.ContainsKey(gameObject))
-        {
-            cachedComponents[gameObject] = new Dictionary<System.Type, Component>();
-        }
+    //public static T GetCachedComponent<T>(GameObject gameObject) where T : Component
+    //{
+    //    if (!cachedComponents.ContainsKey(gameObject))
+    //    {
+    //        cachedComponents[gameObject] = new Dictionary<System.Type, Component>();
+    //    }
 
-        var type = typeof(T);
+    //    var type = typeof(T);
 
-        if (!cachedComponents[gameObject].ContainsKey(type))
-        {
-            T component = gameObject.GetComponent<T>();
-            cachedComponents[gameObject][type] = component;
-        }
+    //    if (!cachedComponents[gameObject].ContainsKey(type))
+    //    {
+    //        T component = gameObject.GetComponent<T>();
+    //        cachedComponents[gameObject][type] = component;
+    //    }
 
-        return (T)cachedComponents[gameObject][type];
-    }
+    //    return (T)cachedComponents[gameObject][type];
+    //}
 
     public static void ClearCache(Collider collider)
     {

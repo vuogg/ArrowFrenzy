@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Level : MonoBehaviour
 {
-    //[SerializeField] private List<Target> activeTargets = new();
     [SerializeField] private int activeArrows = 0;
-
     [SerializeField] private List<Target> activeTargets = new();
+
+    private float clearDuration = 3f;
 
     public Transform crossbowPosition;
 
@@ -56,7 +56,6 @@ public class Level : MonoBehaviour
         {
             activeArrows++;
         }
-        
     }
 
     public void UnregisterArrow(Arrow arrow)
@@ -76,7 +75,7 @@ public class Level : MonoBehaviour
             AudioManager.Instance.PlaySound(AudioManager.Instance.win);
             UIManager.Instance.OpenUI<Win>().ChangeAnim(Constants.ANIM_SLIDEFROMRIGHT);
             UIManager.Instance.CloseUI<GamePlay>();
-            StartCoroutine(ClearArrowsCouroutine());
+            StartCoroutine(IEClearArrowsCouroutine());
         }
     }
 
@@ -95,9 +94,9 @@ public class Level : MonoBehaviour
         }
     }
 
-    public IEnumerator ClearArrowsCouroutine()
+    public IEnumerator IEClearArrowsCouroutine()
     {
-        yield return new WaitForSeconds(4f);
+        yield return Cache.GetWFS(clearDuration);
         SimplePool.CollectAll();
     }
 }

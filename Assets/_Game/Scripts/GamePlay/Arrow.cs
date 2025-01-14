@@ -61,7 +61,7 @@ public class Arrow : GameUnit
 
     private void CheckOutOfBounds()
     {
-        if(Mathf.Abs(TF.position.x) > 15f || Mathf.Abs(TF.position.z) > 20f)
+        if(TF.position.x < -13f || TF.position.x > 13f || TF.position.z < -18f || TF.position.z > 18f)
         {
             SimplePool.Despawn(this);
             UnregisterArrow();
@@ -124,7 +124,7 @@ public class Arrow : GameUnit
         velocity = Vector3.Reflect(velocity, normal);
 
         //dich chuyen 1 chut de khong va cham lap lai
-        TF.position = hit.point + normal * 0.01f;
+        TF.position = hit.point + normal * 0.09f;
 
         currentReflects++;
         if (currentReflects >= maxReflects)
@@ -151,29 +151,31 @@ public class Arrow : GameUnit
 
     public void RegisterArrow()
     {
-        //TODO:
-        GameObject levelObject = GameObject.FindGameObjectWithTag(Constants.TAG_LEVEL);
-        if (levelObject != null)
-        {
-            level = levelObject.GetComponent<Level>();
-            if (level != null)
-            {
-                level.RegisterArrow(this);
-            }
-        }
+        //GameObject levelObject = GameObject.FindGameObjectWithTag(Constants.TAG_LEVEL);
+        //if (levelObject != null)
+        //{
+        //    level = levelObject.GetComponent<Level>();
+        //    if (level != null)
+        //    {
+        //        level.RegisterArrow(this);
+        //    }
+        //}
+
+        LevelManager.Instance.currentLevel.RegisterArrow(this);
     }
 
     public void UnregisterArrow()
     {
-        //TODO:
-        GameObject levelObject = GameObject.FindGameObjectWithTag(Constants.TAG_LEVEL);
-        if (levelObject != null)
-        {
-            level = levelObject.GetComponent<Level>();
-            if (level != null)
-            {
-                level.UnregisterArrow(this);
-            }
-        }
+        //GameObject levelObject = GameObject.FindGameObjectWithTag(Constants.TAG_LEVEL);
+        //if (levelObject != null)
+        //{
+        //    level = levelObject.GetComponent<Level>();
+        //    if (level != null)
+        //    {
+        //        level.UnregisterArrow(this);
+        //    }
+        //}
+
+        LevelManager.Instance.currentLevel.UnregisterArrow(this);
     }
 }

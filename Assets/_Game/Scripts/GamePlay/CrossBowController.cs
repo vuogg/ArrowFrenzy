@@ -113,7 +113,7 @@ public class CrossBowController : AnimationsController
             //crossbowTransform.rotation = Quaternion.Slerp(crossbowTransform.rotation, targetRotation, smoothSpeed * Time.deltaTime);
 
             float angle = Quaternion.Angle(crossbowTransform.rotation, targetRotation);
-            if (angle > 5f)
+            if (angle > 3.5f)
             {
                 float smoothSpeed = 3f;
                 crossbowTransform.rotation = Quaternion.Slerp(crossbowTransform.rotation, targetRotation, smoothSpeed * Time.deltaTime);
@@ -133,9 +133,10 @@ public class CrossBowController : AnimationsController
         //Arrow arrowScript = Cache.GetArrow(arrow.gameObject);
         //if (arrowScript != null)
         //{
-        arrow.Launch(shootPoint.forward * arrowPrefab.arrowSpeed);
-            //arrowScript.Launch(shootPoint.forward * arrow.GetComponent<Arrow>().arrowSpeed);
+        //arrowScript.Launch(shootPoint.forward * arrow.GetComponent<Arrow>().arrowSpeed);
         //}
+
+        arrow.Launch(shootPoint.forward * arrowPrefab.arrowSpeed);
 
         hasShot = true;
         lineRenderer.enabled = false;

@@ -128,14 +128,6 @@ public class CrossBowController : AnimationsController
         //Arrow arrow = SimplePool.Spawn<Arrow>(arrowPrefab, shootPoint.position, shootPoint.rotation);
         Arrow arrow = SimplePool.Spawn<Arrow>(PoolType.Arrow, shootPoint.position, shootPoint.rotation);
 
-        //Truyen van toc cho mui ten
-        //Arrow arrowScript = arrow.GetComponent<Arrow>();
-        //Arrow arrowScript = Cache.GetArrow(arrow.gameObject);
-        //if (arrowScript != null)
-        //{
-        //arrowScript.Launch(shootPoint.forward * arrow.GetComponent<Arrow>().arrowSpeed);
-        //}
-
         arrow.Launch(shootPoint.forward * arrowPrefab.arrowSpeed);
 
         hasShot = true;

@@ -8520,7 +8520,7 @@ ParticleSystem:
     m_Dampen:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.25
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -8626,7 +8626,7 @@ ParticleSystem:
     m_EnergyLossOnCollision:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.25
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -8683,10 +8683,10 @@ ParticleSystem:
       serializedVersion: 2
       m_Bits: 8
     maxCollisionShapes: 256
-    quality: 1
-    voxelSize: 0.5
+    quality: 0
+    voxelSize: 1
     collisionMessages: 0
-    collidesWithDynamic: 1
+    collidesWithDynamic: 0
     interiorCollisions: 0
   TriggerModule:
     enabled: 0

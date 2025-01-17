@@ -6,12 +6,11 @@ public class OnHit : MonoBehaviour
 {
     [SerializeField] Target target;
 
-    public void TakeDamage(int damage) 
+    public void TakeDamage(int damage, Vector3 arrowDirection) 
     {
         if (target != null)
         {
-            target.TakeDamage(damage);
-            //target.DecreaseHealthText(damage);
+            target.TakeDamage(damage, arrowDirection);
         }
     }
 

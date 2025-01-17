@@ -126,6 +126,7 @@ MonoBehaviour:
   col: {fileID: 4797812272251637675}
   rb: {fileID: 1271852427416838883}
   trailRenderer: {fileID: 9026186416653436034}
+  hitPos: {fileID: 6632099731382310095}
   maxReflects: 30
   currentReflects: 0
   target: {fileID: 0}

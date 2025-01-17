@@ -14,16 +14,6 @@ public class Level : MonoBehaviour
     public void OnInit()
     {
         activeArrows = 0;
-        //activeTargets.Clear();
-
-        //if (activeTargets.Count == 0)
-        //{
-        //    Target[] targets = GetComponentsInChildren<Target>();
-        //    for (int i = 0; i < targets.Length; i++)
-        //    {
-        //        activeTargets.Add(Cache.GetTarget(targets[i].gameObject));
-        //    }
-        //}
 
         for (int i = 0; i < activeTargets.Count; i++)
         {
@@ -66,15 +56,6 @@ public class Level : MonoBehaviour
         }
         CheckLoseCondition();
     }
-
-    //public bool ShouldTriggerSlowMotion()
-    //{
-    //    if (activeTargets.Count == 1 && activeTargets[0].hp == 1)
-    //    {
-    //        return true;
-    //    }
-    //    return false;
-    //}
 
     private void CheckWinCondition()
     {

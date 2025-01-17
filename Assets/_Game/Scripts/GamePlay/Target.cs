@@ -10,12 +10,12 @@ public class Target : AnimationsController
     [SerializeField] private float force = 30f;
     public HealthBar healthBar;
 
-    private float turnOffRagdollDuration = 2f;
+    private Vector3 impactDirection;
+    private float turnOffRagdollDuration = 3f;
     private bool isHit = false;
     private bool isDead = false;
 
     public int hp = 10;
-    //public int currentHealth;
     public Level levelTargets;
 
     private void Start()
@@ -25,7 +25,6 @@ public class Target : AnimationsController
 
     public void OnInit()
     {
-        //currentHealth = hp;
         healthBar.SetMaxHealth(hp);
 
         ChangeAnim(Constants.ANIM_DANCE);
@@ -36,7 +35,7 @@ public class Target : AnimationsController
         isDead = false;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, Vector3 arrowDirection)
     {
         if (isDead) return;
 
@@ -48,10 +47,10 @@ public class Target : AnimationsController
 
         hp -= damage;
         healthBar.SetHealth(hp);
-        //currentHealth -= damage;
-       // healthBar.SetHealth(currentHealth);
 
         ChangeAnim(Constants.ANIM_TARGETSHAKING);
+
+        impactDirection = arrowDirection;
 
         if (hp <= 0)
         {
@@ -83,9 +82,9 @@ public class Target : AnimationsController
 
     private void ApplyRagdollForce()
     {
-        foreach(Rigidbody rb in ragdollRigidbodies)
+        foreach (Rigidbody rb in ragdollRigidbodies)
         {
-            rb.AddForce(Vector3.forward * force, ForceMode.Impulse);
+            rb.AddForce(impactDirection * force, ForceMode.Impulse);
         }
     }
 

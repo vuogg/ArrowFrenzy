@@ -2,33 +2,38 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Target : AnimationsController
 {
     [SerializeField] private Rigidbody[] ragdollRigidbodies;
-    [SerializeField] private int hp = 10;
-    [SerializeField] private float force = 40f;
-    [SerializeField] private HealthText health;
+    [SerializeField] private float force = 30f;
+    public HealthBar healthBar;
 
     private float turnOffRagdollDuration = 2f;
     private bool isHit = false;
     private bool isDead = false;
+
+    public int hp = 10;
+    //public int currentHealth;
     public Level levelTargets;
 
     private void Start()
     {
         OnInit();
-    } 
+    }
 
     public void OnInit()
     {
-        health.OnInit(hp);
+        //currentHealth = hp;
+        healthBar.SetMaxHealth(hp);
+
         ChangeAnim(Constants.ANIM_DANCE);
 
         SetRagdollState(false);
 
-        isHit = false ;
-        isDead = false ;
+        isHit = false;
+        isDead = false;
     }
 
     public void TakeDamage(int damage)
@@ -42,37 +47,25 @@ public class Target : AnimationsController
         }
 
         hp -= damage;
+        healthBar.SetHealth(hp);
+        //currentHealth -= damage;
+       // healthBar.SetHealth(currentHealth);
+
         ChangeAnim(Constants.ANIM_TARGETSHAKING);
-        DecreaseHealthText(damage);
 
         if (hp <= 0)
         {
+            healthBar.healthBar.enabled = false;
             EnableRagdoll();
             ApplyRagdollForce();
             StartCoroutine(IEKinematicCouroutine());
             isDead = true;
 
-            //TODO
-            //GameObject levelObject = GameObject.FindGameObjectWithTag(Constants.TAG_LEVEL);
-            //if (levelObject != null)
-            //{
-            //    levelTargets = Cache.GetLevel(levelObject);
-            //    if (levelTargets != null)
-            //    {
-            //        levelTargets.UnregisterTarget(this);
-            //    }
-            //}
-
             LevelManager.Instance.currentLevel.UnregisterTarget(this);
         }
-    }
+    }  
 
-    public void DecreaseHealthText(int value)
-    {
-        health.CurrentHealth -= value;
-    }    
-
-    void SetRagdollState(bool state)
+    private void SetRagdollState(bool state)
     {
         foreach(Rigidbody rb in ragdollRigidbodies)
         {
@@ -98,12 +91,6 @@ public class Target : AnimationsController
 
     private void OnDestroy()
     {
-        //GameObject levelObject = GameObject.FindGameObjectWithTag(Constants.TAG_LEVEL);
-        //if (levelObject != null)
-        //{
-        //    Cache.ClearCache(levelObject);
-        //}
-
         Cache.ClearCache(gameObject);
     }
 

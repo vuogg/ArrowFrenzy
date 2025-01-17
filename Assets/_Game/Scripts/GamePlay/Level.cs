@@ -5,10 +5,10 @@ using UnityEngine;
 public class Level : MonoBehaviour
 {
     [SerializeField] private int activeArrows = 0;
-    [SerializeField] private List<Target> activeTargets = new();
 
     private float clearDuration = 3f;
 
+    public List<Target> activeTargets = new();
     public Transform crossbowPosition;
 
     public void OnInit()
@@ -67,6 +67,15 @@ public class Level : MonoBehaviour
         CheckLoseCondition();
     }
 
+    //public bool ShouldTriggerSlowMotion()
+    //{
+    //    if (activeTargets.Count == 1 && activeTargets[0].hp == 1)
+    //    {
+    //        return true;
+    //    }
+    //    return false;
+    //}
+
     private void CheckWinCondition()
     {
         if (activeTargets.Count == 0)
@@ -76,6 +85,7 @@ public class Level : MonoBehaviour
             UIManager.Instance.OpenUI<Win>().ChangeAnim(Constants.ANIM_SLIDEFROMRIGHT);
             UIManager.Instance.CloseUI<GamePlay>();
             StartCoroutine(IEClearArrowsCouroutine());
+            //Time.timeScale = 1f;
         }
     }
 

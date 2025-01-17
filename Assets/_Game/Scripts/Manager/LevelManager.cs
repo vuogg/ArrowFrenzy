@@ -31,6 +31,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void OnInit()
     {
+        Time.timeScale = 1.0f;
         if (crossBowInstance == null)
         {
             crossBowInstance = Instantiate(crossBowPrefab);

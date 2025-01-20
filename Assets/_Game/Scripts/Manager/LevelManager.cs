@@ -3,7 +3,6 @@
 public class LevelManager : Singleton<LevelManager>
 {
     [SerializeField] private CrossBowController crossBowPrefab;
-
     private CrossBowController crossBowInstance;
 
     public Level[] levelPrefabs;
@@ -37,15 +36,14 @@ public class LevelManager : Singleton<LevelManager>
             crossBowInstance = Instantiate(crossBowPrefab);
         }
 
-        crossBowInstance.OnInit();
         //crossBowController.OnInit();
+        crossBowInstance.OnInit();
 
         if (currentLevel != null && currentLevel.crossbowPosition != null)
         {
             //crossBowController.transform.SetPositionAndRotation(currentLevel.crossbowPosition.position, currentLevel.crossbowPosition.rotation);
             crossBowInstance.transform.SetPositionAndRotation(currentLevel.crossbowPosition.position, currentLevel.crossbowPosition.rotation);
         }
-
     }
 
     public void LoadLevel(int level)
@@ -131,4 +129,3 @@ public class LevelManager : Singleton<LevelManager>
         OnReset();
     }
 }
-

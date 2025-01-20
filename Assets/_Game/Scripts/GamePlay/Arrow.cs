@@ -11,11 +11,9 @@ public class Arrow : GameUnit
     [SerializeField] private TrailRenderer trailRenderer;
 
     private Vector3 velocity;
-
     public Transform hitPos;
     public int maxReflects = 10;
     public int currentReflects;
-    public Target target;
     public LayerMask reflectLayers;
     public LayerMask buffLayers;
     public LayerMask targetLayers;
@@ -40,6 +38,8 @@ public class Arrow : GameUnit
     {
         if (!isStuck)
         {
+            PredictRaycast();
+
             Vector3 nextPoint = TF.position + arrowSpeed * Time.fixedDeltaTime * velocity.normalized;
 
             RaycastHit hit;
@@ -86,6 +86,17 @@ public class Arrow : GameUnit
             Debug.Log("out off bound");
             SimplePool.Despawn(this);
             UnregisterArrow();
+        }
+    }
+
+    private void PredictRaycast()
+    {
+        float predictDistance = 3.5f;
+        Ray ray = new(transform.position, velocity.normalized);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, predictDistance, targetLayers) && LevelManager.Instance.currentLevel.ShouldTriggerSlowMotion())
+        {
+            StartSlowMotion();
         }
     }
 
@@ -169,5 +180,35 @@ public class Arrow : GameUnit
     public void UnregisterArrow()
     {
         LevelManager.Instance.currentLevel.UnregisterArrow(this);
+    }
+
+    private void StartSlowMotion()
+    {
+        StartCoroutine(IESlowMotionEffect());
+    }
+
+    public IEnumerator IESlowMotionEffect()
+    {
+        // kich hoat slowmotion
+        Time.timeScale = 0.005f;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
+
+        if (LevelManager.Instance.currentLevel.activeTargets[0] != null && LevelManager.Instance.currentLevel.activeTargets[0].hp > 0)
+        {
+            yield return null;
+        }
+
+        float elapsedTime = 0f;
+        float duration = 4f;
+        while (elapsedTime < duration)
+        {
+            Time.timeScale = Mathf.Lerp(0.005f, 1f, elapsedTime / duration);
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+            elapsedTime += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f;
     }
 }

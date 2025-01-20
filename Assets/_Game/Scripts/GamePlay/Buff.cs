@@ -39,7 +39,7 @@ public class Buff : AnimationsController
             Arrow arrow = SimplePool.Spawn<Arrow>(PoolType.Arrow, arrowSpawnPoint.position, rotation);
 
             Vector3 shootDirection = rotation * Vector3.forward;
-            arrow.Launch(shootDirection.normalized * arrow.arrowSpeed);
+            arrow.Launch(shootDirection.normalized * arrowPrefab.arrowSpeed);
         }
 
         //cooldown

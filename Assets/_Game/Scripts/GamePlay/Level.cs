@@ -57,6 +57,15 @@ public class Level : MonoBehaviour
         CheckLoseCondition();
     }
 
+    public bool ShouldTriggerSlowMotion()
+    {
+        if (activeTargets.Count == 1 && activeTargets[0].hp == 1)
+        {
+            return true;
+        }
+        return false;
+    }
+
     private void CheckWinCondition()
     {
         if (activeTargets.Count == 0)

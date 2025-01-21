@@ -11,6 +11,7 @@ public class Arrow : GameUnit
     [SerializeField] private TrailRenderer trailRenderer;
 
     private Vector3 velocity;
+
     public Transform hitPos;
     public int maxReflects = 10;
     public int currentReflects;
@@ -91,12 +92,14 @@ public class Arrow : GameUnit
 
     private void PredictRaycast()
     {
-        float predictDistance = 3.5f;
+        float predictDistance = 2f;
         Ray ray = new(transform.position, velocity.normalized);
 
         if (Physics.Raycast(ray, out RaycastHit hit, predictDistance, targetLayers) && LevelManager.Instance.currentLevel.ShouldTriggerSlowMotion())
         {
-            StartSlowMotion();
+           // StartSlowMotion();
+            Time.timeScale = 0.08f;
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
         }
     }
 
@@ -132,7 +135,7 @@ public class Arrow : GameUnit
         UnregisterArrow();
     }
 
-    void Reflect(RaycastHit hit)
+    public void Reflect(RaycastHit hit)
     {
         //vector phap tuyen va phan xa
         //Phap tuyen tai diem va cham
@@ -141,8 +144,14 @@ public class Arrow : GameUnit
         //vector phan xa
         velocity = Vector3.Reflect(velocity, normal);
 
+        Vector3 sideVector = Vector3.Cross(normal, velocity).normalized;
+
+        float randomAngle = Random.Range(-3f, 3f);
+        Quaternion rotation = Quaternion.AngleAxis(randomAngle, sideVector);
+        velocity = rotation * velocity;
+
         //dich chuyen 1 chut de khong va cham lap lai
-        TF.position = hit.point + normal * 0.09f;
+        //TF.position = hit.point + normal * Random.Range(0, 0.25f);
 
         currentReflects++;
         if (currentReflects >= maxReflects)
@@ -180,35 +189,5 @@ public class Arrow : GameUnit
     public void UnregisterArrow()
     {
         LevelManager.Instance.currentLevel.UnregisterArrow(this);
-    }
-
-    private void StartSlowMotion()
-    {
-        StartCoroutine(IESlowMotionEffect());
-    }
-
-    public IEnumerator IESlowMotionEffect()
-    {
-        // kich hoat slowmotion
-        Time.timeScale = 0.005f;
-        Time.fixedDeltaTime = 0.02f * Time.timeScale;
-
-        if (LevelManager.Instance.currentLevel.activeTargets[0] != null && LevelManager.Instance.currentLevel.activeTargets[0].hp > 0)
-        {
-            yield return null;
-        }
-
-        float elapsedTime = 0f;
-        float duration = 4f;
-        while (elapsedTime < duration)
-        {
-            Time.timeScale = Mathf.Lerp(0.005f, 1f, elapsedTime / duration);
-            Time.fixedDeltaTime = 0.02f * Time.timeScale;
-            elapsedTime += Time.unscaledDeltaTime;
-            yield return null;
-        }
-
-        Time.timeScale = 1f;
-        Time.fixedDeltaTime = 0.02f;
     }
 }

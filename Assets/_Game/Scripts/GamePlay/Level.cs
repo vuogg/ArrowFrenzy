@@ -70,12 +70,7 @@ public class Level : MonoBehaviour
     {
         if (activeTargets.Count == 0)
         {
-            GameManager.Instance.ChangeState(GameState.Pause);
-            AudioManager.Instance.PlaySound(AudioManager.Instance.win);
-            UIManager.Instance.OpenUI<Win>().ChangeAnim(Constants.ANIM_SLIDEFROMRIGHT);
-            UIManager.Instance.CloseUI<GamePlay>();
-            StartCoroutine(IEClearArrowsCouroutine());
-            //Time.timeScale = 1f;
+            StartCoroutine(IESlowBeforeWin());
         }
     }
 
@@ -93,6 +88,32 @@ public class Level : MonoBehaviour
             UIManager.Instance.CloseUI<GamePlay>();
         }
     }
+
+    private IEnumerator IESlowBeforeWin()
+    {
+        float delayBeforeNormalSpeed = 3f;
+        yield return new WaitForSecondsRealtime(delayBeforeNormalSpeed);
+
+        float elapsedTime = 0f;
+        float duration = 2f;
+
+        while (elapsedTime < duration)
+        {
+            Time.timeScale = Mathf.Lerp(0.08f, 1f, elapsedTime / duration);
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+            elapsedTime += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f;
+
+        GameManager.Instance.ChangeState(GameState.Pause);
+        AudioManager.Instance.PlaySound(AudioManager.Instance.win);
+        UIManager.Instance.OpenUI<Win>().ChangeAnim(Constants.ANIM_SLIDEFROMRIGHT);
+        UIManager.Instance.CloseUI<GamePlay>();
+        StartCoroutine(IEClearArrowsCouroutine());
+    }    
 
     public IEnumerator IEClearArrowsCouroutine()
     {

@@ -19,12 +19,13 @@ public class Win : UICanvas
         {
             LevelManager.Instance.OnStartGame();
             UIManager.Instance.OpenUI<Win>().ChangeAnim(Constants.ANIM_SLIDELEFT);
+            Close(0.5f);
         }
         else
         {
             AudioManager.Instance.PlayMusic(AudioManager.Instance.mainMenu);
+            Close(0.5f);
         }
 
-        Close(0.5f);
     }
 }

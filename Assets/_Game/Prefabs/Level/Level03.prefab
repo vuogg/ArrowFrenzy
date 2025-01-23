@@ -1212,11 +1212,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7979332868193217809, guid: 88570e1d0fb27994b860662689004ceb, type: 3}
       propertyPath: spreadAngle
-      value: 95
+      value: 115
       objectReference: {fileID: 0}
     - target: {fileID: 7979332868193217809, guid: 88570e1d0fb27994b860662689004ceb, type: 3}
       propertyPath: arrowMultiplier
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

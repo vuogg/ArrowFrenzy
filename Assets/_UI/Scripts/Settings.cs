@@ -7,7 +7,7 @@ public class Settings : UICanvas
     public override void Open()
     {
         base.Open();
-        StartCoroutine(WaitForSlideCouroutine());
+        Time.timeScale = 0;
     }
 
     public override void Close(float delayTime)
@@ -31,11 +31,5 @@ public class Settings : UICanvas
         LevelManager.Instance.OnRetry();
         LevelManager.Instance.OnStartGame();
         Time.timeScale = 1;
-    }
-
-    public IEnumerator WaitForSlideCouroutine()
-    {
-        yield return new WaitForSeconds(0.5f);
-        Time.timeScale = 0;
     }
 }

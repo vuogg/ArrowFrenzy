@@ -15,8 +15,7 @@ public class Lose : UICanvas
     public void LeaveButton()
     {
         GameManager.Instance.ChangeState(GameState.MainMenu);
-        UIManager.Instance.OpenUI<Lose>().ChangeAnim(Constants.ANIM_SLIDELEFT);
-        Close(0.5f);
+        Close(0);
         //UIManager.Instance.CloseAll();
         UIManager.Instance.OpenUI<MainMenu>().ChangeAnim(Constants.ANIM_FADEIN);
         AudioManager.Instance.PlayMusic(AudioManager.Instance.mainMenu);

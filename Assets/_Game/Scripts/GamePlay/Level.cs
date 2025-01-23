@@ -6,7 +6,7 @@ public class Level : MonoBehaviour
 {
     [SerializeField] private int activeArrows = 0;
 
-    private float clearDuration = 3f;
+    private float clearDuration = 2f;
 
     public List<Target> activeTargets = new();
     public Transform crossbowPosition;
@@ -92,7 +92,7 @@ public class Level : MonoBehaviour
     private IEnumerator IESlowBeforeWin()
     {
         float delayBeforeNormalSpeed = 3f;
-        yield return new WaitForSecondsRealtime(delayBeforeNormalSpeed);
+        yield return Cache.GetWFSRT(delayBeforeNormalSpeed);
 
         float elapsedTime = 0f;
         float duration = 2f;

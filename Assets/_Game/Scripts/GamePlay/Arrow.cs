@@ -46,7 +46,6 @@ public class Arrow : GameUnit
             RaycastHit hit;
             if (Physics.Raycast(TF.position, velocity.normalized, out hit, arrowSpeed * Time.fixedDeltaTime + 0.005f, reflectLayers | targetLayers | buffLayers))
             {
-                Debug.DrawRay(TF.position, velocity.normalized, Color.red, arrowSpeed * Time.fixedDeltaTime + 0.005f);
                 if ((reflectLayers.value & (1 << hit.collider.gameObject.layer)) != 0)
                 {
                     Reflect(hit);
@@ -84,7 +83,6 @@ public class Arrow : GameUnit
     {
         if(TF.position.x < -13f || TF.position.x > 13f || TF.position.z < -18f || TF.position.z > 18f)
         {
-            Debug.Log("out off bound");
             SimplePool.Despawn(this);
             UnregisterArrow();
         }
@@ -150,8 +148,6 @@ public class Arrow : GameUnit
         Quaternion rotation = Quaternion.AngleAxis(randomAngle, sideVector);
         velocity = rotation * velocity;
 
-        //dich chuyen 1 chut de khong va cham lap lai
-        //TF.position = hit.point + normal * Random.Range(0, 0.25f);
 
         currentReflects++;
         if (currentReflects >= maxReflects)
@@ -175,8 +171,6 @@ public class Arrow : GameUnit
         //huong mui ten sau khi gam vao
         TF.SetPositionAndRotation(hitPosition, Quaternion.LookRotation(velocity.normalized));
 
-        //TF.transform.position = hitPosition;
-        //TF.transform.rotation = Quaternion.LookRotation(velocity.normalized);
 
         isStuck = true;
     }

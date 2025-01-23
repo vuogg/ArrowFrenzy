@@ -22,6 +22,18 @@ public class Cache
         }
         return wfs[time];
     }
+
+    private static Dictionary<float, WaitForSecondsRealtime> wfsRT = new();
+
+    public static WaitForSecondsRealtime GetWFSRT(float time)
+    {
+        if (!wfsRT.ContainsKey(time))
+        {
+            wfsRT.Add(time, new WaitForSecondsRealtime(time));
+        }
+        return wfsRT[time];
+    }
+
     public static Buff GetBuff(Collider collider)
     {
         if (!buffs.ContainsKey(collider))

@@ -16,6 +16,6 @@ public class GamePlay : UICanvas
         LevelManager.Instance.OnPause();
         UIManager.Instance.OpenUI<Settings>().ChangeAnim(Constants.ANIM_SLIDEDOWN);
         AudioManager.Instance.StopMusic();
-        Close(0.5f);
+        Close(0);
     }
 }

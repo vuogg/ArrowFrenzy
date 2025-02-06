@@ -1232,6 +1232,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3043808837417136183}
     m_Modifications:
+    - target: {fileID: 1380172240415886109, guid: 31a9e76c983ce5d48ae3f50ee264cd1c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380172240415886109, guid: 31a9e76c983ce5d48ae3f50ee264cd1c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2585057897847860332, guid: 31a9e76c983ce5d48ae3f50ee264cd1c, type: 3}
       propertyPath: m_Name
       value: Targetx25
@@ -1351,11 +1359,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7979332868193217809, guid: 88570e1d0fb27994b860662689004ceb, type: 3}
       propertyPath: spreadAngle
-      value: 80
+      value: 95
       objectReference: {fileID: 0}
     - target: {fileID: 7979332868193217809, guid: 88570e1d0fb27994b860662689004ceb, type: 3}
       propertyPath: arrowMultiplier
-      value: 5
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979332868193217809, guid: 88570e1d0fb27994b860662689004ceb, type: 3}
+      propertyPath: cooldownDuration
+      value: 1.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1375,6 +1387,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3043808837417136183}
     m_Modifications:
+    - target: {fileID: 1380172240415886109, guid: 31a9e76c983ce5d48ae3f50ee264cd1c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380172240415886109, guid: 31a9e76c983ce5d48ae3f50ee264cd1c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2585057897847860332, guid: 31a9e76c983ce5d48ae3f50ee264cd1c, type: 3}
       propertyPath: m_Name
       value: Targetx25 (1)
@@ -1494,11 +1514,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7979332868193217809, guid: 88570e1d0fb27994b860662689004ceb, type: 3}
       propertyPath: spreadAngle
-      value: 80
+      value: 135
       objectReference: {fileID: 0}
     - target: {fileID: 7979332868193217809, guid: 88570e1d0fb27994b860662689004ceb, type: 3}
       propertyPath: arrowMultiplier
-      value: 5
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979332868193217809, guid: 88570e1d0fb27994b860662689004ceb, type: 3}
+      propertyPath: cooldownDuration
+      value: 1.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1022,7 +1022,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5143624492774764690, guid: ffbc02adf35c7084396300f43328f61a, type: 3}
       propertyPath: m_Name
-      value: Targetx10
+      value: Targetx5
       objectReference: {fileID: 0}
     - target: {fileID: 5201856535517910554, guid: ffbc02adf35c7084396300f43328f61a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1095,7 +1095,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5143624492774764690, guid: ffbc02adf35c7084396300f43328f61a, type: 3}
       propertyPath: m_Name
-      value: Targetx10 (1)
+      value: Targetx5 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 5201856535517910554, guid: ffbc02adf35c7084396300f43328f61a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1238,7 +1238,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5143624492774764690, guid: ffbc02adf35c7084396300f43328f61a, type: 3}
       propertyPath: m_Name
-      value: Targetx10 (3)
+      value: Targetx5 (3)
       objectReference: {fileID: 0}
     - target: {fileID: 5201856535517910554, guid: ffbc02adf35c7084396300f43328f61a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1311,7 +1311,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5143624492774764690, guid: ffbc02adf35c7084396300f43328f61a, type: 3}
       propertyPath: m_Name
-      value: Targetx10 (2)
+      value: Targetx5 (2)
       objectReference: {fileID: 0}
     - target: {fileID: 5201856535517910554, guid: ffbc02adf35c7084396300f43328f61a, type: 3}
       propertyPath: m_LocalPosition.x

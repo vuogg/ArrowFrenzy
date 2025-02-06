@@ -1019,11 +1019,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6658676061519874239, guid: 998a71d2b50530842ba6fb2531a3db88, type: 3}
       propertyPath: spreadAngle
-      value: 245
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6658676061519874239, guid: 998a71d2b50530842ba6fb2531a3db88, type: 3}
       propertyPath: arrowMultiplier
-      value: 50
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7433260186955477826, guid: 998a71d2b50530842ba6fb2531a3db88, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1089,7 +1089,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2690505464059173581, guid: c2966024f9a2aa24c8e97cae85437cee, type: 3}
       propertyPath: m_Name
-      value: Targetx15
+      value: Targetx9
       objectReference: {fileID: 0}
     - target: {fileID: 5352455594226561492, guid: c2966024f9a2aa24c8e97cae85437cee, type: 3}
       propertyPath: m_LocalPosition.x

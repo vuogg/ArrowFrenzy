@@ -803,7 +803,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5143624492774764690, guid: ffbc02adf35c7084396300f43328f61a, type: 3}
       propertyPath: m_Name
-      value: Targetx10
+      value: Targetx5
       objectReference: {fileID: 0}
     - target: {fileID: 5201856535517910554, guid: ffbc02adf35c7084396300f43328f61a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -843,6 +843,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5201856535517910554, guid: ffbc02adf35c7084396300f43328f61a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6854346956689008639, guid: ffbc02adf35c7084396300f43328f61a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6854346956689008639, guid: ffbc02adf35c7084396300f43328f61a, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -920,11 +928,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7979332868193217809, guid: 88570e1d0fb27994b860662689004ceb, type: 3}
       propertyPath: spreadAngle
-      value: 185
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 7979332868193217809, guid: 88570e1d0fb27994b860662689004ceb, type: 3}
       propertyPath: arrowMultiplier
-      value: 25
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

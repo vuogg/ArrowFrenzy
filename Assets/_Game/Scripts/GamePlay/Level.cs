@@ -57,6 +57,7 @@ public class Level : MonoBehaviour
         CheckLoseCondition();
     }
 
+    //FIXME
     public bool ShouldTriggerSlowMotion()
     {
         if (activeTargets.Count == 1 && activeTargets[0].hp == 1)

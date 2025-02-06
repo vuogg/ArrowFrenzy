@@ -2779,7 +2779,7 @@ GameObject:
   - component: {fileID: 5200766810486047634}
   - component: {fileID: 8636943502204517593}
   m_Layer: 7
-  m_Name: Targetx12
+  m_Name: Targetx7
   m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2830,7 +2830,7 @@ MonoBehaviour:
   - {fileID: 4738476609885693886}
   force: 30
   healthBar: {fileID: 2164788499319311007}
-  hp: 12
+  hp: 7
   levelTargets: {fileID: 0}
 --- !u!1 &6506301210072207042
 GameObject:

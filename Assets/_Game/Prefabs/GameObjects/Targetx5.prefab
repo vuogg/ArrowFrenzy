@@ -2491,7 +2491,7 @@ GameObject:
   - component: {fileID: 8571858583812707259}
   - component: {fileID: 7127028738138426334}
   m_Layer: 7
-  m_Name: Targetx10
+  m_Name: Targetx5
   m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2542,7 +2542,7 @@ MonoBehaviour:
   - {fileID: 7820607847082128547}
   force: 30
   healthBar: {fileID: 6527929873367252707}
-  hp: 10
+  hp: 5
   levelTargets: {fileID: 0}
 --- !u!95 &7127028738138426334
 Animator:

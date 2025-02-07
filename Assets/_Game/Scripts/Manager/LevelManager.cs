@@ -3,7 +3,9 @@
 public class LevelManager : Singleton<LevelManager>
 {
     [SerializeField] private CrossBowController crossBowPrefab;
-    private CrossBowController crossBowInstance;
+    [SerializeField] private DragController dragControllerPrefab;
+    public CrossBowController crossBowInstance;
+    public DragController dragControllerInstance;
 
     public Level[] levelPrefabs;
     public Level currentLevel;
@@ -36,8 +38,14 @@ public class LevelManager : Singleton<LevelManager>
             crossBowInstance = Instantiate(crossBowPrefab);
         }
 
+        if (dragControllerInstance == null)
+        {
+            dragControllerInstance = Instantiate(dragControllerPrefab);
+        }
+
         //crossBowController.OnInit();
         crossBowInstance.OnInit();
+        dragControllerInstance.OnInit();
 
         if (currentLevel != null && currentLevel.crossbowPosition != null)
         {
@@ -53,7 +61,6 @@ public class LevelManager : Singleton<LevelManager>
             Destroy(currentLevel.gameObject);
         }
 
-        //level = Mathf.Clamp(level, 0, levelIndex);
 
         if (level < levelPrefabs.Length)
         {
@@ -99,6 +106,7 @@ public class LevelManager : Singleton<LevelManager>
     public void OnRetry()
     {
         OnReset();
+
         UIManager.Instance.OpenUI<GamePlay>();
     }
 

@@ -20,7 +20,7 @@ public class Buff : AnimationsController
 
     public void ArrowMultiply(Vector3 direction)
     {
-        if (isCooldown) return;
+        if (isCooldown || LevelManager.Instance.currentLevel.activeTargets.Count == 0) return;
 
         StartCoroutine(IEArrowMultiply(direction));
     }

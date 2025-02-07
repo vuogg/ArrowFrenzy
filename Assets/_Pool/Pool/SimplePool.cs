@@ -64,7 +64,7 @@ public static class SimplePool
             GameUnit obj = Spawn();
 
             obj.TF.SetPositionAndRotation(pos, rot);
-            if(obj is Arrow arrow)
+            if (obj is Arrow arrow)
             {
                 arrow.OnInit();
                 arrow.RegisterArrow();
@@ -242,7 +242,7 @@ public static class SimplePool
     public static HashSet<GameUnit> GetAllUnitIsActive(PoolType poolType)
     {
         return GetAllUnitIsActive(GetPrefabByType(poolType));
-    }  
+    }
 
     #endregion
 
@@ -282,11 +282,11 @@ public static class SimplePool
         return unit;
     }
 
-    static public T Spawn<T> (PoolType poolType, Vector3 localPoint, Quaternion localRot, Transform parent) where T : GameUnit
+    static public T Spawn<T>(PoolType poolType, Vector3 localPoint, Quaternion localRot, Transform parent) where T : GameUnit
     {
         return Spawn<T>(GetPrefabByType(poolType), localPoint, localRot, parent);
     }
-     static public T Spawn<T> (PoolType poolType, Transform parent) where T : GameUnit
+    static public T Spawn<T>(PoolType poolType, Transform parent) where T : GameUnit
     {
         return Spawn<T>(GetPrefabByType(poolType), parent);
     }

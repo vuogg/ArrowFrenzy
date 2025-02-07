@@ -902,6 +902,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crossBowPrefab: {fileID: 7162326169964132421, guid: 4a36f3a1e6f34494f8059f8dd3df1777, type: 3}
+  dragControllerPrefab: {fileID: 8091263090779628608, guid: f24cc5b03f3a011499281ec5092353d6, type: 3}
+  crossBowInstance: {fileID: 0}
+  dragControllerInstance: {fileID: 0}
   levelPrefabs:
   - {fileID: 2155924926288894314, guid: 890bab1af9d6af54ca2669381da8c0cd, type: 3}
   - {fileID: 1232410618985973884, guid: de062e2528df9ae4088f30f8aea166e5, type: 3}

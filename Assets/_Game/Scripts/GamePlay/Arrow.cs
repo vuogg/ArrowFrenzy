@@ -88,17 +88,16 @@ public class Arrow : GameUnit
         }
     }
 
-    //FIXME
     private void PredictRaycast()
     {
-        float predictDistance = 2f;
+        float predictDistance = 0.9f;
         Ray ray = new(transform.position, velocity.normalized);
 
         if (Physics.Raycast(ray, out RaycastHit hit, predictDistance, targetLayers) && LevelManager.Instance.currentLevel.ShouldTriggerSlowMotion())
         {
-            Time.timeScale = 0.08f;
+            Time.timeScale = 0.05f;
             Time.fixedDeltaTime = 0.02f * Time.timeScale;
-        }
+        }   
     }
 
     private void HandleBuff(RaycastHit hit)

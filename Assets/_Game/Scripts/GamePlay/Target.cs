@@ -54,13 +54,12 @@ public class Target : AnimationsController
 
         if (hp <= 0)
         {
+            isDead = true;
+            LevelManager.Instance.currentLevel.UnregisterTarget(this);
             healthBar.healthBar.enabled = false;
             EnableRagdoll();
             ApplyRagdollForce();
             StartCoroutine(IEKinematicCouroutine());
-            isDead = true;
-
-            LevelManager.Instance.currentLevel.UnregisterTarget(this);
         }
     }  
 

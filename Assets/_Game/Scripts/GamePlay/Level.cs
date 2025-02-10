@@ -55,6 +55,11 @@ public class Level : MonoBehaviour
             activeArrows--;
         }
         CheckLoseCondition();
+
+        if(activeArrows <= 0 && activeTargets.Count == 0)
+        {
+            OpenUIWin();
+        }    
     }
 
     //FIXME
@@ -75,6 +80,15 @@ public class Level : MonoBehaviour
         }
     }
 
+    private void OpenUIWin()
+    {
+        GameManager.Instance.ChangeState(GameState.Pause);
+        AudioManager.Instance.PlaySound(AudioManager.Instance.win);
+        UIManager.Instance.OpenUI<Win>().ChangeAnim(Constants.ANIM_SLIDEFROMRIGHT);
+        UIManager.Instance.CloseUI<GamePlay>();
+        StartCoroutine(IEClearArrowsCouroutine());
+    }    
+
     private void CheckLoseCondition()
     {
         if (activeArrows <= 0 && activeTargets.Count > 0)
@@ -83,12 +97,10 @@ public class Level : MonoBehaviour
             {
                 activeTargets[i].ChangeAnim(Constants.ANIM_WIN);
             }
-            GameManager.Instance.ChangeState(GameState.Pause);
-            AudioManager.Instance.PlaySound(AudioManager.Instance.lose);
-            UIManager.Instance.OpenUI<Lose>().ChangeAnim(Constants.ANIM_SLIDEFROMLEFT);
-            UIManager.Instance.CloseUI<GamePlay>();
+
+            StartCoroutine(IEWaitForLoseCouroutine());
         }
-    }
+    } 
 
     private IEnumerator IESlowBeforeWin()
     {
@@ -100,7 +112,7 @@ public class Level : MonoBehaviour
 
         while (elapsedTime < duration)
         {
-            Time.timeScale = Mathf.Lerp(0.08f, 1f, elapsedTime / duration);
+            Time.timeScale = Mathf.Lerp(0.05f, 1f, elapsedTime / duration);
             Time.fixedDeltaTime = 0.02f * Time.timeScale;
             elapsedTime += Time.unscaledDeltaTime;
             yield return null;
@@ -108,19 +120,21 @@ public class Level : MonoBehaviour
 
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f;
+    }
 
-        GameManager.Instance.ChangeState(GameState.Pause);
-        AudioManager.Instance.PlaySound(AudioManager.Instance.win);
-        UIManager.Instance.OpenUI<Win>().ChangeAnim(Constants.ANIM_SLIDEFROMRIGHT);
-        UIManager.Instance.CloseUI<GamePlay>();
-        StartCoroutine(IEClearArrowsCouroutine());
-    }    
-
-    //fix here
-
-    public IEnumerator IEClearArrowsCouroutine()
+    private IEnumerator IEClearArrowsCouroutine()
     {
         yield return Cache.GetWFS(clearDuration);
         SimplePool.CollectAll();
+    }
+
+    private IEnumerator IEWaitForLoseCouroutine()
+    {
+        yield return Cache.GetWFS(clearDuration);
+
+        GameManager.Instance.ChangeState(GameState.Pause);
+        AudioManager.Instance.PlaySound(AudioManager.Instance.lose);
+        UIManager.Instance.CloseUI<GamePlay>();
+        UIManager.Instance.OpenUI<Lose>().ChangeAnim(Constants.ANIM_SLIDEFROMLEFT);
     }
 }
